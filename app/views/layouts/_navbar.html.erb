@@ -16,14 +16,25 @@
       </a>
     </div>
     
-    <div class="collapse navbar-collapse" id="header-collapse">
-      <ul class="nav navbar-nav">
+    <div class="collapse navbar-collapse" id="header-collapse">      
+      <ul class="nav navbar-nav navbar-left">
         <%= render partial: 'layouts/navigation' %>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <%= render partial: 'sessions/session' %>
-      </ul>    
+      </ul>
+      
+      <form class="navbar-form">
+        <div class="form-group" style="display:inline;">
+          <div class="input-group nav-search">
+            <input type="text" class="form-control" placeholder="Search">
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-search"></span>
+            </span>
+          </div>
+        </div>
+      </form>  
     </div>
   </div>
 </nav>
