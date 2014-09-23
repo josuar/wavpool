@@ -5,5 +5,6 @@ Wavpool::Application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   
   namespace :api, defaults: { format: :json } do
+    resources :profiles, only: [:show, :update]
   end
 end
