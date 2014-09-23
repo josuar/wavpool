@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :require_unauthenticated!
+    
   def new
   end
 

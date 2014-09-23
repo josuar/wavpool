@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :email_address, unique: true
-    add_index :session_token, unique: true
+    add_index :users, :email_address, unique: true
+    add_index :users, :session_token, unique: true
   end
 end

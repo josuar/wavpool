@@ -31,4 +31,11 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_url
     end
   end
+  
+  def require_unauthenticated!
+    if signed_in?
+      flash[:errors] = ["You are already signed in!"]
+      redirect_to root_url
+    end
+  end
 end
