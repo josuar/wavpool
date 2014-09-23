@@ -1,17 +1,14 @@
 # WavPool
----------
 
 ## What is WavPool?
 
 WavPool is a music-sharing service where users can contribute to a boundless pool of tracks, snippets, remixes, DJ sets, and everything in between. Visitors surfing the pool can use search queries, tags, and simple browsing to discover new aural treats, and can follow their favorite users to stay up-to-date on every submission.
 
----------
 
 ## Features
 ### User registration
 Though anyone can surf the WavPool to discover new music, you need to be registered to contribute your own content. Registering for WavPool is simple – all it takes is an email address and a password of your choosing.
 
----------
 
 ## Coming Soon
 
