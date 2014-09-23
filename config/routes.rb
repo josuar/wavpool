@@ -1,5 +1,5 @@
 Wavpool::Application.routes.draw do
-  root to: "static#root"
+  root to: "users#new"
   
   resource :user, only: [:new, :create]
   resource :session, only: [:new, :create, :destroy]

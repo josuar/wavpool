@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64(32)
   end
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by_username(username)
+  def self.find_by_credentials(email_address, password)
+    user = User.find_by_email_address(email_address)
 
     user && user.is_password?(password) ? user : nil
   end

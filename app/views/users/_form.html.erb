@@ -1,13 +1,13 @@
-<%= form_for @user, url: user_path do |user| %>
+<%= form_for user, url: user_path do |u| %>
   <div class="form-group">
-    <%= user.label :email_address %>
-    <%= user.text_field :email_address, class: 'form-control' %>
+    <%= u.label :email_address %>
+    <%= u.text_field :email_address, class: 'form-control' %>
   </div>
   
   <div class="form-group">
-    <%= user.label :password %>
-    <%= user.password_field :password, class: 'form-control' %>
+    <%= u.label :password %>
+    <%= u.password_field :password, class: 'form-control' %>
   </div>
   
-  <%= user.submit 'Sign up', class: 'btn btn-default' %>
+  <%= u.submit 'Sign up', class: 'btn btn-primary' %>
 <% end %>

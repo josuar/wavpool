@@ -33,7 +33,6 @@ group :doc do
 end
 
 gem 'bootstrap-sass'
-
 gem 'bcrypt'
 
 group :development do

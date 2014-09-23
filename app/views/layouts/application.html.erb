@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Wavpool</title>
+  <title>WavPool</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  
+<header>
+  <%= render partial: 'layouts/navbar' %>
+</header>
 
-<%= yield %>
+<main class="container">
+  <%= yield %>
+</main>
 
 </body>
 </html>

@@ -1,6 +1,4 @@
-class StaticController < ApplicationController
-  before_action :require_authenticated!
-  
+class StaticController < ApplicationController  
   def root
   end
 end
