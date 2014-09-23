@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :require_unauthenticated!
+  before_action :require_unauthenticated!, except: :destroy
     
   def new
   end
