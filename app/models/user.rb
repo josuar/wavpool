@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  email_address   :string(255)      not null
+#  password_digest :string(255)      not null
+#  session_token   :string(255)      not null
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
 class User < ActiveRecord::Base
   validates :email_address, :password_digest, :session_token, presence: true
   validates :email_address, :session_token, uniqueness: true
@@ -6,6 +18,9 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
 
   after_initialize :ensure_session_token
+  after_create :create_profile
+  
+  has_one :profile, dependent: :destroy
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64(32)
@@ -31,8 +46,12 @@ class User < ActiveRecord::Base
   end
 
   private
+  
+  def create_profile
+    Profile.create(user: self)
+  end
 
   def ensure_session_token
-    self.session_token = User.generate_session_token
+    self.session_token ||= User.generate_session_token
   end
 end
