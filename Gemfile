@@ -35,6 +35,8 @@ end
 gem 'bootstrap-sass'
 gem 'bcrypt'
 
+gem 'newrelic_rpm'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
