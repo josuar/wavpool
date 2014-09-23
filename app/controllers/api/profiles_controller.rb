@@ -1,12 +1,13 @@
-class ProfilesController < ApplicationController
+class Api::ProfilesController < ApplicationController
   def show
     render json: current_profile
   end
   
-  def edit
-  end
-  
   def update
+    if current_profile.update(profile_params)
+      render json: current_profile
+    else
+    end
   end
   
   private
