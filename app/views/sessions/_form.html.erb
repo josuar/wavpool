@@ -1,15 +1,19 @@
 <%= form_tag session_path do %>
   <% fields_for :session do |s| %>
     <div class="form-group">
-      <%= s.label :email_address %>
-      <%= s.text_field :email_address, class: 'form-control' %>
+        <%= s.text_field :email_address, class: 'form-control', placeholder: 'Email address' %>
     </div>
   
     <div class="form-group">
-      <%= s.label :password %>
-      <%= s.password_field :password, class: 'form-control' %>
+      <div class="input-group">
+        <%= s.password_field :password, class: 'form-control', placeholder: 'Password' %>
+
+        <span class="input-group-btn">
+          <button class="btn btn-default">
+            <span class="glyphicon glyphicon-arrow-right"></span>
+          </button>
+        </span>
+      </div>
     </div>
-  
-    <%= s.submit 'Sign in', class: 'btn btn-primary pull-right' %>
   <% end %>
 <% end %>

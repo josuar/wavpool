@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
   after_create :create_profile
   
-  has_one :profile, dependent: :destroy
+  has_one :profile, dependent: :destroy, autosave: true
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64(32)

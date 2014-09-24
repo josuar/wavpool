@@ -1,12 +1,16 @@
 <%= form_for user, url: user_path do |u| %>
   <div class="form-group">
-    <%= u.label :email_address %>
-    <%= u.text_field :email_address, class: 'form-control' %>
+    <%= fields_for :profile, @user.profile do |p| %>
+      <%= p.text_field :display_name, class: 'form-control', placeholder: 'Name' %>
+    <% end %>
   </div>
   
   <div class="form-group">
-    <%= u.label :password %>
-    <%= u.password_field :password, class: 'form-control' %>
+    <%= u.text_field :email_address, class: 'form-control', placeholder: 'Email address' %>
+  </div>
+  
+  <div class="form-group">
+    <%= u.password_field :password, class: 'form-control', placeholder: 'Password' %>
   </div>
   
   <%= u.submit 'Sign up', class: 'btn btn-primary' %>
