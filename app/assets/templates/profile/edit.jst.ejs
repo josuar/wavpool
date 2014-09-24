@@ -1,43 +1,56 @@
+<h3>Profile</h3>
+
 <form>
-  <div class="form-group">
-    <label for="profile_display_name">Display name</label>
-    <input
-      type="text"
-      name="profile[display_name]"
-      id="profile_display_name"
-      class="form-control"
-      value="<%= profile.escape('display_name') %>">
-      <p class="help-block">
-        This is the name users will know you by. This could be your real name or the name you release music under. You can always change it down the line.
-      </p>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label for="profile_display_name">Username</label>
+        <input
+          type="text"
+          name="profile[display_name]"
+          id="profile_display_name"
+          class="form-control"
+          value="<%= profile.escape('display_name') %>">
+          <p class="help-block">
+            Your name, artist name, or company name. You may change this at any time.
+          </p>
+      </div>
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="profile_full_name">Full name</label>
-    <input
-      type="text"
-      name="profile[full_name]"
-      id="profile_full_name"
-      class="form-control"
-      value="<%= profile.escape('full_name') %>">
-  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="form-group">
+        <label for="profile_full_name">Full name</label>
+        <input
+          type="text"
+          name="profile[full_name]"
+          id="profile_full_name"
+          class="form-control"
+          value="<%= profile.escape('full_name') %>">
+      </div>
 
-  <div class="form-group">
-    <label for="profile_location">Location</label>
-    <input
-      id="profile_location"
-      type="text"
-      name="profile[location]"
-      class="form-control"
-      value="<%= profile.escape('location') %>">
-  </div>
-
-  <div class="form-group">
-    <label for="profile_description">Description</label>
-    <textarea
-      id="profile_description"
-      name="profile[description]"
-      class="form-control"><%= profile.escape('description') %></textarea>
+      <div class="form-group">
+        <label for="profile_location">Location</label>
+        <input
+          id="profile_location"
+          type="text"
+          name="profile[location]"
+          class="form-control"
+          value="<%= profile.escape('location') %>">
+      </div>
+    </div>
+    
+    <div class="col-xs-6">
+      <div class="form-group">
+        <label for="profile_description">Description</label>
+        <textarea
+          id="profile_description"
+          name="profile[description]"
+          class="form-control"
+          rows="5"><%= profile.escape('description') %></textarea>
+      </div>
+    </div>
   </div>
 
   <button class="btn btn-primary pull-right">Save</button>

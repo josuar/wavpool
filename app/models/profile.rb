@@ -10,6 +10,7 @@
 #  description  :text
 #  created_at   :datetime
 #  updated_at   :datetime
+#  picture_url  :string(255)
 #
 
 class Profile < ActiveRecord::Base  

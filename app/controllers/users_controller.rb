@@ -1,7 +1,7 @@
 class UsersController < ApplicationController  
   before_action :require_unauthenticated!
   
-  def new
+  def new        
     @user = User.new
   end
 

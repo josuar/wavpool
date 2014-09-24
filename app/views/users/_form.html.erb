@@ -1,9 +1,9 @@
 <%= form_for user, url: user_path do |u| %>
-  <div class="form-group">
-    <%= fields_for :profile, @user.profile do |p| %>
+  <%= fields_for :profile, @user.profile do |p| %>
+    <div class="form-group">
       <%= p.text_field :display_name, class: 'form-control', placeholder: 'Display name' %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
   
   <div class="form-group">
     <%= u.text_field :email_address, class: 'form-control', placeholder: 'Email address' %>

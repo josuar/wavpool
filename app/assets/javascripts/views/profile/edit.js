@@ -1,8 +1,6 @@
 WavPool.Views.ProfileEdit= Backbone.View.extend({
 	template: JST["profile/edit"],
   
-  className: "col-xs-8 col-xs-offset-2",
-  
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
   },
@@ -24,15 +22,12 @@ WavPool.Views.ProfileEdit= Backbone.View.extend({
           context: "success",
           message: "You have successfully updated your profile."
         });
-           
-      }.bind(this),
+      },
       
       error: function (profile, response) {        
-        _(response.responseJSON).each(function (error) {
-          WavPool.alert({
-            context: "danger",
-            message: error
-          });
+        WavPool.alert({
+          context: "danger",
+          message: response.responseJSON
         });
       }
     });
