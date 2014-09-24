@@ -20,6 +20,13 @@ class Profile < ActiveRecord::Base
   
   belongs_to :user
   
+  has_attached_file :picture, styles: {
+    big:   "200x200>",
+    small: "48x48#"
+  }
+  
+  validates_attachment_content_type :picture, content_type: /\Aimage\/.*\Z/
+  
   private
   
   def ensure_display_name
