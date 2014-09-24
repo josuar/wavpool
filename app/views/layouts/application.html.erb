@@ -16,7 +16,11 @@
   <%= yield %>
 </main>
 
-<script>$(WavPool.initialize);</script>
+<script>
+$(function () {
+    WavPool.initialize(<%= signed_in? %>);
+});
+</script>
 
 </body>
 </html>

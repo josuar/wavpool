@@ -3,6 +3,7 @@ window.WavPool = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {
+  initialize: function(isAuthed) {
+    this.isAuthed = isAuthed;
   }
 };
