@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
 
   after_initialize :ensure_session_token
-  after_create :create_profile
   
   has_one :profile, dependent: :destroy, autosave: true
 
@@ -46,10 +45,6 @@ class User < ActiveRecord::Base
   end
 
   private
-  
-  def create_profile
-    Profile.create(user: self)
-  end
 
   def ensure_session_token
     self.session_token ||= User.generate_session_token

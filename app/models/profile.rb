@@ -13,7 +13,7 @@
 #
 
 class Profile < ActiveRecord::Base  
-  validates :user, :display_name, presence: true
+  validates :display_name, presence: true
   
   after_initialize :ensure_display_name
   
