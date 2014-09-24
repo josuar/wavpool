@@ -15,6 +15,7 @@ window.WavPool = {
   },
 
   startRouters: function (options) {
+  	new WavPool.Routers.RootRouter(options);
   	new WavPool.Routers.ProfileRouter(options);
   }
 };

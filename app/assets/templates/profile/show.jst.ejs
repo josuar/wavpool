@@ -1,1 +1,16 @@
-<h1><%= profile.escape('display_name') %></h1>
+<div class="col-md-3">
+  <h3><%= profile.escape('display_name') %></h2>
+
+  <span><%= profile.escape('full_name') %></span><br>
+  <span><%= profile.escape('location') %></span>
+
+  <p><%= profile.escape('description') %></p>
+</div>
+
+<div class="col-md-5">
+  <h3>Stream goes here.</h3>
+</div>
+
+<div class="col-md-4">
+  <h3>Stats and links go here.</h3>
+</div>
