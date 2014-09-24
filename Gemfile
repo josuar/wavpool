@@ -35,10 +35,12 @@ end
 gem 'bootstrap-sass'
 gem 'bcrypt'
 
+gem 'backbone-on-rails'
+
 gem 'newrelic_rpm'
 
 group :development do
-  gem 'better_errors'
+  gem 'better_errors', '~> 1.1'
   gem 'binding_of_caller'
   gem 'pry-rails'
 end
