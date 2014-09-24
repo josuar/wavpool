@@ -9,11 +9,12 @@ WavPool is a music-sharing service where users can contribute to a boundless poo
 ### User registration
 Though anyone can surf the WavPool to discover new music, you need to be registered to contribute your own content. Registering for WavPool is simple – all it takes is an email address and a password of your choosing.
 
+### Profiles
+Users can create profiles with in-depth biographies and links to their other profiles across the web. Maintain your presence in the WavPool and keep your fans current.
+
 
 ## Coming Soon
 
-### Profiles
-Users can create profiles with in-depth biographies and links to their other profiles across the web. Maintain your presence in the WavPool and keep your fans current.
 
 ### File upload
 Upload your latest creations to the Pool for the world to hear! You can add a title and description to each track, as well as any album art for the release.
