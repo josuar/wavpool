@@ -8,7 +8,7 @@ WavPool.Collections.Profiles = Backbone.Collection.extend({
     if (profile) {
       profile.fetch();
     } else {
-      profile = new Profile({ id: id });
+      profile = new this.model({ id: id });
       
       profile.fetch({
         success: function () {
