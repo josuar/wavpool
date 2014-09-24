@@ -1,7 +1,7 @@
 WavPool.Routers.ProfileRouter = Backbone.SwappingRouter.extend({
   routes: {
     "profiles/:id" : "show",
-    "profile/edit" : "edit"
+    "profiles/:id/edit" : "edit"
   },
 
   initialize: function (options) {
@@ -18,7 +18,13 @@ WavPool.Routers.ProfileRouter = Backbone.SwappingRouter.extend({
     this._swapView(view);
   },
   
-  edit: function () {
+  edit: function (id) {
+    var profile = WavPool.profiles.getOrFetch(id);
     
+    var view = new WavPool.Views.ProfileEdit({
+      model: profile
+    });
+    
+    this._swapView(view);
   }
 });
