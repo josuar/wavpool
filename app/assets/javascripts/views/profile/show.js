@@ -5,7 +5,7 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
     this.listenTo(this.model, "sync", this.render);
   },
 
-  render: function () {
+  render: function () {    
     var renderedContent = this.template({
       profile: this.model
     });

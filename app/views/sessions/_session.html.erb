@@ -1,7 +1,7 @@
 <% if signed_in? %>
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-      <%= current_user.profile.display_name %> <span class="caret"></span>
+      <span id="profile-display-name"><%= current_user.profile.display_name %></span> <span class="caret"></span>
     </a>
   
     <ul class="dropdown-menu">

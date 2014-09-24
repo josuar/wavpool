@@ -1,5 +1,5 @@
 Backbone.SwappingRouter = Backbone.Router.extend({
-  _swapView: function (view) {
+  _swapView: function (view) {    
     if (this._currentView) {
       this._currentView.remove();
     }

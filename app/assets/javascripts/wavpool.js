@@ -4,18 +4,29 @@ window.WavPool = {
   Views: {},
   Routers: {},
 
-  initialize: function (isAuthed) {
+  initialize: function (isAuthed, profileId) {
     this.isAuthed = isAuthed;
+    this.profileId = profileId;
+    
+    this.alertView = new WavPool.Views.Alert();
 
-    this.startRouters({
+    this.startRouter({
     	$rootEl: $('main')
     });
 
     Backbone.history.start();
   },
+  
+  alert: function (alert) {
+    this.alertView.clear();
+    this.alertView.set(alert);
+  },
 
-  startRouters: function (options) {
-  	new WavPool.Routers.RootRouter(options);
-  	new WavPool.Routers.ProfileRouter(options);
+  startRouter: function (options) {
+  	var router = new WavPool.Routers.Router(options);
+    
+    router.on('route', function () {
+      this.alertView.clear();
+    }.bind(this));
   }
 };

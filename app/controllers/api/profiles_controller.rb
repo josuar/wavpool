@@ -11,7 +11,7 @@ class Api::ProfilesController < ApplicationController
     if profile.update(profile_params)
       render json: profile
     else
-      render json: profile.errors.full_messages, status: unprocessable_entity
+      render json: profile.errors.full_messages, status: :unprocessable_entity
     end
   end
   

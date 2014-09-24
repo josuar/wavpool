@@ -12,13 +12,19 @@
   <%= render partial: 'layouts/navbar' %>
 </header>
 
+<div class="alerts container">
+</div>
+
 <main class="container">
   <%= yield %>
 </main>
 
 <script>
 $(function () {
-    WavPool.initialize(<%= signed_in? %>);
+    WavPool.initialize(
+      <%= signed_in? %>,
+      <%= current_user.profile.id rescue -1 %>
+    );
 });
 </script>
 
