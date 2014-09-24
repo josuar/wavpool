@@ -18,14 +18,18 @@
     
     <div class="collapse navbar-collapse" id="header-collapse">      
       <ul class="nav navbar-nav navbar-left">
-        <%= render partial: 'layouts/navigation' %>
+        <%= render partial: 'layouts/left_navigation' %>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <%= render partial: 'sessions/session' %>
       </ul>
       
-      <form class="navbar-form">
+      <ul class="nav navbar-nav navbar-right">
+        <%= render partial: 'layouts/right_navigation' %>
+      </ul>
+      
+      <form class="navbar-form hidden">
         <div class="form-group" style="display:inline;">
           <div class="input-group nav-search">
             <input type="text" class="form-control" placeholder="Search">
