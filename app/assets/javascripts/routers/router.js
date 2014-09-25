@@ -24,7 +24,7 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
   
   profileEdit: function () {
     if (!WavPool.isAuthed) {
-      WavPool.alerts.push({
+      WavPool.alert({
         context: "warning",
         message: "You must be signed in to do that."
       });
