@@ -1,2 +1,5 @@
-WavPool.Views.ProfileEdit = Backbone.View.extend({
+WavPool.Views.ProfilePictureUpload = Backbone.View.extend({
+  template: JST['profile/picture_upload'],
+  
+  
 });

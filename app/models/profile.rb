@@ -14,15 +14,26 @@
 #
 
 class Profile < ActiveRecord::Base  
-  validates :display_name, presence: true
+  validates :picture_url, :display_name, presence: true
+  validate :picture_url_is_valid_image
   
-  after_initialize :ensure_display_name
+  after_initialize :ensure_picture
   
   belongs_to :user
   
   private
   
-  def ensure_display_name
-    self.display_name ||= 'Generic Surfer'
+  def ensure_picture
+    self.picture_url ||= 'default.gif';
+  end
+  
+  def picture_url_is_valid_image
+    url = URI.parse(self.picture_url)
+    
+    Net::HTTP.start(url.host, url.port) do |http|
+      unless http.head(url.path)['Content-Type'].start_with? 'image'
+        errors.add(:picture_url, 'must be a valid image')
+      end
+    end
   end
 end

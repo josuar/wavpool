@@ -1,4 +1,4 @@
-WavPool.Views.ProfileEdit = Backbone.View.extend({
+WavPool.Views.ProfileEdit= Backbone.View.extend({
 	template: JST["profile/edit"],
   
   initialize: function () {
@@ -47,16 +47,24 @@ WavPool.Views.ProfileEdit = Backbone.View.extend({
           // var barContainer = $("<div>").addClass("progress").append(progressBar);
       
           // fileInput.after(barContainer);
+          
+          var formData = signedPost.fields;
       
           fileInput.fileupload({
             fileInput: fileInput,
             url: signedPost.url.scheme + "://" + signedPost.url.host,
             type: 'POST',
             autoUpload: true,
-            formData: signedPost.fields,
+            formData: formData,
             paramName: 'file',
             dataType: 'XML',
             replaceFileInput: false,
+            
+            add: function (event, data) {
+              formData["Content-Type"] = data.files[0].type;
+              data.formData = formData;
+              data.submit();
+            },
             
             progressall: function (event, data) {
             },
@@ -83,7 +91,7 @@ WavPool.Views.ProfileEdit = Backbone.View.extend({
             },
             
             fail: function (event, data) {              
-              submitButton.prop('disabled', true);
+              submit.prop('disabled', true);
             }
           });
         });
