@@ -1,7 +1,9 @@
 WavPool.Routers.Router = Backbone.SwappingRouter.extend({
   routes: {    
     "profiles/:id" : "profileShow",
-    "profile/edit" : "profileEdit"
+    "profile/edit" : "profileEdit",
+    
+    "submissions/new" : "submissionNew"
   },
 
   initialize: function (options) {

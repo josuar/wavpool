@@ -1,4 +1,4 @@
-WavPool.Views.ProfileEdit= Backbone.View.extend({
+WavPool.Views.ProfileEdit = Backbone.View.extend({
 	template: JST["profile/edit"],
   
   initialize: function () {
