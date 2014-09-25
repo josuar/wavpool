@@ -26,6 +26,7 @@ window.WavPool = {
   	var router = new WavPool.Routers.Router(options);
     
     router.on('route', function () {
+      this.alertView.clear();
     }.bind(this));
   }
 };

@@ -1,4 +1,4 @@
-WavPool.Views.ProfileEdit= Backbone.View.extend({
+WavPool.Views.ProfileEdit = Backbone.View.extend({
 	template: JST["profile/edit"],
   
   initialize: function () {
@@ -32,6 +32,64 @@ WavPool.Views.ProfileEdit= Backbone.View.extend({
       }
     });
   },
+  
+  bindUploadFields: function () {    
+    $.ajax({
+      url: "/signed_urls",
+      success: function (signedPost) {
+        this.$('.directUpload input[type=file]').each(function (i, el) {
+          var fileInput = $(el);
+          var form = $(fileInput.parents('form'));
+          var submit = form.find('input[type=submit]');
+          var img = form.find('img');
+      
+          // var progressBar = $("<div>").addClass("bar");
+          // var barContainer = $("<div>").addClass("progress").append(progressBar);
+      
+          // fileInput.after(barContainer);
+      
+          fileInput.fileupload({
+            fileInput: fileInput,
+            url: signedPost.url.scheme + "://" + signedPost.url.host,
+            type: 'POST',
+            autoUpload: true,
+            formData: signedPost.fields,
+            paramName: 'file',
+            dataType: 'XML',
+            replaceFileInput: false,
+            
+            progressall: function (event, data) {
+            },
+            
+            start: function (event) {
+              submit.prop('disabled', true);
+            },
+            
+            done: function (event, data) {
+              submit.prop('disabled', false);
+              
+              var key = $(data.jqXHR.responseXML).find("Key").text();
+              var url = '//' + signedPost.url.host + '/' + key;
+              
+              img.attr("src", url);
+              
+              var input = $("<input>", {
+                type: 'hidden',
+                name: fileInput.attr('name'),
+                value: url
+              });
+              
+              form.append(input);
+            },
+            
+            fail: function (event, data) {              
+              submitButton.prop('disabled', true);
+            }
+          });
+        });
+      }.bind(this)
+    });
+  },
 
   render: function () {
     var renderedContent = this.template({
@@ -39,6 +97,8 @@ WavPool.Views.ProfileEdit= Backbone.View.extend({
     });
 
     this.$el.html(renderedContent);
+    
+    this.bindUploadFields();
 
     return this;
   }

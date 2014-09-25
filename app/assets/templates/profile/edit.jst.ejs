@@ -1,10 +1,15 @@
 <h3>Profile</h3>
 <hr>
 
-<form>
+<form class="directUpload">
   <div class="row">
     <div class="col-sm-3 col-xs-12">
-      Profile picture goes here
+      <img src="<%= profile.escape("picture_url") %>" width="180" height="180" class="img-responsive" />
+      <input type="file" name="profile[picture_url]" />
+      <div class="progress hidden">
+        <div class="progress-bar">
+        </div>
+      </div>
     </div>
     <div class="col-sm-9 col-xs-12">
       <div class="form-group">

@@ -19,7 +19,7 @@ class Api::ProfilesController < ApplicationController
   
   def profile_params
     params.require(:profile).permit(
-      :display_name, :full_name, :location, :description
+      :display_name, :full_name, :location, :description, :picture_url
     )
   end
   
