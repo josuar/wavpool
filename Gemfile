@@ -42,8 +42,6 @@ gem 'newrelic_rpm'
 gem 'figaro'
 
 gem 'aws-sdk'
-gem 'paperclip'
-gem 's3_direct_upload'
 
 group :development do
   gem 'better_errors', '~> 1.1'
