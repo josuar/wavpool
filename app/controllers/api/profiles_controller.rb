@@ -2,7 +2,7 @@ class Api::ProfilesController < ApplicationController
   before_action :require_profile_ownership!, only: :update
   
   def show
-    render json: current_profile
+    current_profile
   end
   
   def update
@@ -24,7 +24,7 @@ class Api::ProfilesController < ApplicationController
   end
   
   def current_profile
-    @current_profile ||= Profile.find(params[:id])
+    @profile ||= Profile.includes(user: :submissions).find(params[:id])
   end
   
   def require_profile_ownership!

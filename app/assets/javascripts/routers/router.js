@@ -14,6 +14,15 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
     this.$rootEl.html("");
   },
   
+  // submissionNew: function () {
+  //   var view = new WavPool.Views.SubmissionForm({
+  //     model: new WavPool.Models.Submission(),
+  //     collection: WavPool.submissions
+  //   });
+  //
+  //   this._swapView(view);
+  // },
+  
   profileShow: function (id) {
     var profile = WavPool.profiles.getOrFetch(id);
 

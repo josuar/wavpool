@@ -20,6 +20,7 @@ class Profile < ActiveRecord::Base
   after_initialize :ensure_picture
   
   belongs_to :user
+  has_many :submissions, through: :user, source: :submissions
   
   private
   
