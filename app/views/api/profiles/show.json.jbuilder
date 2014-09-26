@@ -1,7 +1,13 @@
 json.id @profile.id
+json.user_id @profile.user.id
 
-if @profile.user == current_user
-  json.user_id current_user.id
+json.following_count @profile.user.followees.count
+json.followed_count @profile.user.followers.count
+
+json.submission_count @profile.user.submissions.count
+
+unless @profile == current_user.profile
+  json.followed current_user.follows?(@profile.user)
 end
 
 json.display_name @profile.display_name

@@ -15,5 +15,9 @@ WavPool.Models.Profile = Backbone.Model.extend({
     }
     
     return payload;
+  },
+  
+  isCurrentUser: function () {
+    return WavPool.profile && this.id === WavPool.profile.id;
   }
 });

@@ -21,6 +21,12 @@ class User < ActiveRecord::Base
   
   has_one :profile, dependent: :destroy, autosave: true
   has_many :submissions, dependent: :destroy
+  
+  has_many :in_follows, class_name: "Follow", foreign_key: :followee_id
+  has_many :out_follows, class_name: "Follow", foreign_key: :follower_id
+  
+  has_many :followers, through: :in_follows, source: :follower
+  has_many :followees, through: :out_follows, source: :followee
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64(32)
@@ -43,6 +49,10 @@ class User < ActiveRecord::Base
 
   def reset_session_token!
     self.update(session_token: User.generate_session_token)
+  end
+  
+  def follows?(user)
+    self.followees.include?(user)
   end
 
   private

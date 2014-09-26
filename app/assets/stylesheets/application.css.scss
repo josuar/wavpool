@@ -23,3 +23,8 @@
 .submissions .media {
   margin-bottom: 25px;
 }
+
+.submissions {
+  overflow-y: scroll;
+  height: 100%;
+}

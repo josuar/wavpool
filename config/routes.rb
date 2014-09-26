@@ -9,7 +9,10 @@ Wavpool::Application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resource :user, only: :show
     
-    resources :profiles, only: [:show, :update]
+    resources :profiles, only: [:show, :update] do
+      resource :follow, only: [:create, :destroy]
+    end
+    
     resources :submissions, only: [:create, :show, :update]
   end
 end

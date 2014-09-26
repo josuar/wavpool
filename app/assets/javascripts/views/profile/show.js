@@ -34,6 +34,18 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
 
     this.$el.html(renderedContent);
     this.attachSubviews();
+    
+    this.$('.follow-button').toggleButton({      
+      onAction: "Follow",
+      offAction: "Unfollow",
+      
+      on: this.model.get("followed"),
+      
+      onIcon: "plus",
+      offIcon: "minus",
+      
+      actionUrl: "api/profiles/" + this.model.get("user_id") + "/follow"
+    });
 
     return this;
   }

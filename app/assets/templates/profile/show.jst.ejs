@@ -18,16 +18,32 @@
 
   <p><%= profile.escape('description') %></p>
   
-  <% if (WavPool.profile && profile.id === WavPool.profile.id) { %>
-    <a href="#/profile/edit" class="btn btn-default btn-sm">
-      <span class="glyphicon glyphicon-pencil"></span>
-      Edit
-    </a>
+  <div class="form-group">
+    <span class="glyphicon glyphicon-user"></span>
+    <%= profile.escape("followed_count") %>&nbsp;
+
+    <span class="glyphicon glyphicon-upload"></span>
+    <%= profile.escape("submission_count") %>
+  </div>
+  
+  <% if (!profile.isCurrentUser()) { %>
+    <div class="form-group">
+      <a class="btn btn-primary btn-sm follow-button"></a>
+    </div>
   <% } %>
-  <a href="<%= document.URL %>" class="btn btn-default btn-sm">
-    <span class="glyphicon glyphicon-share"></span>
-    Share
-  </a>
+  
+  <div class="form-group">
+    <% if (WavPool.profile && profile.id === WavPool.profile.id) { %>
+      <a href="#/profile/edit" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-pencil"></span>
+        Edit
+      </a>
+    <% } %>
+    <a href="<%= document.URL %>" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-share"></span>
+      Share
+    </a>
+  </div>
 </div>
 
 <div class="col-sm-6">
