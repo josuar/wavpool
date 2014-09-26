@@ -21,10 +21,10 @@
 
 <script>
 $(function () {
-    WavPool.initialize(
-      <%= signed_in? %>,
-      <%= current_user.profile.id rescue -1 %>
-    );
+    WavPool.initialize({
+      profileId: <%= current_user.profile.id rescue 0 %>,
+      s3Bucket: "<%= S3_BUCKET.url %>"
+    });
 });
 </script>
 

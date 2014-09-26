@@ -10,19 +10,19 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
     this.$rootEl = options.$rootEl;
   },
   
-  root: function (id) {
+  root: function () {
     this.$rootEl.html("");
   },
   
-  // submissionNew: function () {
-  //   var view = new WavPool.Views.SubmissionForm({
-  //     model: new WavPool.Models.Submission(),
-  //     collection: WavPool.submissions
-  //   });
-  //
-  //   this._swapView(view);
-  // },
-  
+  submissionNew: function () {
+    var view = new WavPool.Views.SubmissionForm({
+      model: new WavPool.Models.Submission(),
+      collection: WavPool.profile.submissions()
+    });
+
+    this._swapView(view);
+  },
+
   profileShow: function (id) {
     var profile = WavPool.profiles.getOrFetch(id);
 
@@ -34,7 +34,7 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
   },
   
   profileEdit: function () {
-    if (!WavPool.isAuthed) {
+    if (!WavPool.profileId) {
       WavPool.alert({
         context: "warning",
         message: "You must be signed in to do that."

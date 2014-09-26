@@ -1,0 +1,52 @@
+<div class="col-md-10 col-md-offset-1">
+  <form class="directUpload">
+    <h3>Upload a track</h3>
+    
+    <input type="file" name="submission[remote_url]" type="form-control"  />
+    <br>
+  
+    <h4>Info</h4>
+    <hr>
+  
+    <div class="form-group">
+      <label for="submission_title">Title</label>
+      <input
+        type="text"
+        name="submission[title]"
+        id="submission_title"
+        class="form-control"
+        value="<%= submission.escape('title') %>">
+    </div>
+    
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group">
+          <label for="submission_image_url">Image</label>
+            
+          <% if (submission.attributes.image_url) { %>
+            <img src="<%= WavPool.s3Url(submission.escape("image_url")) %>" width="180" height="180" class="img-responsive" />
+          <% } else { %>
+            <img src="test.jpg" width="90" height="90" class="img-responsive" />
+          <% } %>
+        
+          <input type="file" name="submission[image_url]" id="submission_image_url" type="form-control" />
+        </div>
+      </div>
+      
+      <div class="col-md-10">
+        <div class="form-group">
+          <label for="submission_description">Description</label>
+          <textarea
+            id="submission_description"
+            name="submission[description]"
+            class="form-control"
+            rows="5"><%= submission.escape('description') %></textarea>
+          </div>
+        </div>
+    </div>
+  
+    <hr>
+    
+    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+  </form>
+</div>

@@ -1,3 +1,3 @@
-WavCloud.Models.Submission = Backbone.Model.extend({
+WavPool.Models.Submission = Backbone.Model.extend({
   urlRoot: "api/submissions"
 });
