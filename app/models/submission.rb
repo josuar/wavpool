@@ -21,14 +21,13 @@ class Submission < ActiveRecord::Base
   
   after_initialize :ensure_image
 
-  before_validation :get_old_image
   after_save :delete_old_image
   before_destroy :delete_resources
   
   belongs_to :user
 
   def write_attribute(attr_name, value)
-    @old_image = self.image_url if attr_name == 'image_url'
+    @old_image = self.image_url if attr_name == 'image_url' && value != self.image_url
 
     super
   end

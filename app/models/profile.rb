@@ -27,7 +27,7 @@ class Profile < ActiveRecord::Base
   has_many :submissions, through: :user, source: :submissions
 
   def write_attribute(attr_name, value)
-    @old_picture = self.picture_url if attr_name == 'picture_url'
+    @old_picture = self.picture_url if attr_name == 'picture_url' && value != self.picture_url
 
     super
   end
