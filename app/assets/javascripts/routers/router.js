@@ -11,7 +11,7 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
   },
   
   root: function () {
-    this.$rootEl.html("");
+    this.profileShow(WavPool.profile.id);
   },
   
   submissionNew: function () {

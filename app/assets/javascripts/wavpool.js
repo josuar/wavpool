@@ -45,6 +45,18 @@ window.WavPool = {
       success: callback
     });
   },
+  
+  pageNotFound: function () {
+    Backbone.history.navigate('#', {
+      trigger: true,
+      replace: true
+    });
+    
+    this.alert({
+      context: "warning",
+      message: "That page doesn't exist!"
+    });
+  },
 
   bindUploadField: function (options) {
     this.getUploadPost(function (signedPost) {
@@ -150,3 +162,9 @@ window.WavPool = {
     });
   }
 };
+
+$(document).ajaxError(function (event, xhr, settings, exception) {
+  if (xhr.status === 404) {
+    WavPool.pageNotFound(); 
+  }
+});
