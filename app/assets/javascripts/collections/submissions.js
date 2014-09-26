@@ -7,7 +7,7 @@ WavPool.Collections.Submissions = Backbone.Collection.extend({
     var leftDate = new Date(left.get("timestamp")),
         rightDate = new Date(right.get("timestamp"));
         
-    if (leftDate < rightDate) {
+    if (leftDate > rightDate) {
       return -1;
     } else if (leftDate === rightDate) {
       return 0;
