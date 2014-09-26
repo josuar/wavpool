@@ -18,6 +18,15 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
   },
   
   submissionNew: function () {
+    if (!WavPool.profile) {
+      WavPool.alert({
+        context: "warning",
+        message: "You must be signed in to do that."
+      });
+      
+      return;
+    }
+    
     var view = new WavPool.Views.SubmissionForm({
       model: new WavPool.Models.Submission(),
       collection: WavPool.profile.submissions()

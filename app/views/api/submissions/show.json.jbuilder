@@ -10,4 +10,4 @@ json.remote_url @submission.remote_url
 json.image_url @submission.image_url
 json.description @submission.description
 
-json.timestamp @submission.created_at
+json.timestamp time_ago_in_words(@submission.created_at)

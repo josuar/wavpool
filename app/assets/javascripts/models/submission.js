@@ -11,11 +11,21 @@ WavPool.Models.Submission = Backbone.Model.extend({
   
   timestamp: function () {
     if (!this.attributes.timestamp) {
-      return "an unknown date";
+      return "some time ago";
     }
     
-    var date = new Date(this.get("timestamp"));
+    return this.escape("timestamp") + " ago";
+  },
+  
+  isOwnedByCurrentUser: function () {
+    if (!WavPool.profile) {
+      return false;
+    }
     
-    return date.toLocaleString();
+    if (!this.attributes.profile) {
+      return false;
+    }
+    
+    return WavPool.profile.id === this.get("profile").id;
   }
 });

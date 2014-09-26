@@ -18,14 +18,14 @@
 
   <p><%= profile.escape('description') %></p>
   
-  <% if (profile.id === WavPool.profile.id) { %>
+  <% if (WavPool.profile && profile.id === WavPool.profile.id) { %>
     <a href="#/profile/edit" class="btn btn-default btn-sm">
       <span class="glyphicon glyphicon-pencil"></span>
       Edit
     </a>
   <% } %>
   <a href="<%= document.URL %>" class="btn btn-default btn-sm">
-    <span class="glyphicon glyphicon-globe"></span>
+    <span class="glyphicon glyphicon-share"></span>
     Share
   </a>
 </div>
