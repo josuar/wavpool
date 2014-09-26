@@ -2,7 +2,7 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
 	template: JST["submission/show"],
 
 	initialize: function (options) {
-    this.showDescription = options.showDescription;
+    this.showExtendedInfo = options.showExtendedInfo;
     
     this.listenTo(this.model, "sync", this.render);
   },
@@ -10,7 +10,7 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
   render: function () {    
     var renderedContent = this.template({
       submission: this.model,
-      showDescription: this.showDescription
+      showExtendedInfo: this.showExtendedInfo
     });
 
     this.$el.html(renderedContent);

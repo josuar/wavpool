@@ -30,7 +30,7 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
     var submission = WavPool.submissions.getOrFetch(id);
 
     var view = new WavPool.Views.SubmissionShow({
-      showDescription: true,
+      showExtendedInfo: true,
     	model: submission
     });
 

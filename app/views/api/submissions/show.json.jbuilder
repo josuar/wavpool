@@ -9,3 +9,5 @@ json.title @submission.title
 json.remote_url @submission.remote_url
 json.image_url @submission.image_url
 json.description @submission.description
+
+json.timestamp @submission.created_at

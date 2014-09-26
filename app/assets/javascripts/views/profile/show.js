@@ -13,7 +13,7 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
   addSubmission: function (submission) {
     var subview = new WavPool.Views.SubmissionShow({
       model: submission,
-      showDescription: false
+      showExtendedInfo: false
     });
     
     this.addSubview(".submissions", subview);
