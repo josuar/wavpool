@@ -14,4 +14,11 @@ json.submissions @profile.user.submissions do |submission|
   
   json.remote_url submission.remote_url
   json.image_url submission.image_url
+  
+  json.timestamp submission.created_at
+  
+  json.profile do
+    json.id @profile.id
+    json.name @profile.display_name
+  end
 end

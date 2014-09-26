@@ -6,6 +6,8 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
     
     this.listenTo(this.model.submissions(), "add", this.addSubmission);
     this.listenTo(this.model.submissions(), "remove", this.removeSubmission);
+    
+    this.model.submissions().each(this.addSubmission.bind(this));
   },
   
   addSubmission: function (submission) {
