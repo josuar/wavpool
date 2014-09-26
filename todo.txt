@@ -1,4 +1,2 @@
 - delete profile pic when new one is set
-- store only the s3 key for uploads
-- valid default pic (reg broken until then)
 - bindUploads -> bindUpload

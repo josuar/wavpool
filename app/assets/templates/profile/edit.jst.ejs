@@ -5,14 +5,10 @@
   <div class="row">
     <div class="col-sm-3 col-xs-12">
       <!-- Don't hit S3 unless we've loaded the model fully -->
-      <% if (profile.attributes.picture_url) { %>
-        <img src="<%= WavPool.s3Url(profile.escape("picture_url")) %>" width="180" height="180" class="img-responsive" />
+      <% console.log(profile); if (profile.attributes.picture_url) { %>
+        <img src="<%= WavPool.s3Url(profile.escape("picture_url")) %>" width="180" height="180" class="img-responsive upload-preview" />
       <% } %>
-      <input type="file" name="profile[picture_url]" type="form-control"  />
-      <div class="progress hidden">
-        <div class="progress-bar">
-        </div>
-      </div>
+      <input type="file" name="profile[picture_url]" class="form-control upload-field"  />
     </div>
     <div class="col-sm-9 col-xs-12">
       <div class="form-group">

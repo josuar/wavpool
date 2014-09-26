@@ -34,7 +34,7 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
   },
   
   profileEdit: function () {
-    if (!WavPool.profileId) {
+    if (!WavPool.profile) {
       WavPool.alert({
         context: "warning",
         message: "You must be signed in to do that."
@@ -43,7 +43,8 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
       return;
     }
     
-    var profile = WavPool.profiles.getOrFetch(WavPool.profileId);
+    var profile = WavPool.profile;
+    profile.fetch();
     
     var view = new WavPool.Views.ProfileEdit({
       model: profile

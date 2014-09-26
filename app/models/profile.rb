@@ -20,6 +20,9 @@ class Profile < ActiveRecord::Base
   validate :picture_url_is_valid_image
   
   after_initialize :ensure_picture
+
+  before_validation :get_old_picture
+  after_save :delete_old_picture
   
   belongs_to :user
   has_many :submissions, through: :user, source: :submissions
@@ -27,7 +30,15 @@ class Profile < ActiveRecord::Base
   private
   
   def ensure_picture
-    self.picture_url ||= 'default.gif';
+    self.picture_url ||= 'default.gif'
+  end
+
+  def get_old_picture
+    @old_picture = self.picture_url
+  end
+
+  def delete_old_picture
+    S3_BUCKET.objects[@old_picture].delete
   end
   
   def picture_url_is_valid_image

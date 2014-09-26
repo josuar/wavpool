@@ -43,7 +43,15 @@ WavPool.Views.SubmissionForm = Backbone.View.extend({
 
     this.$el.html(renderedContent);
     
-    WavPool.bindUploadFields();
+    WavPool.bindUploadField(
+      /(\.|\/)(mp3|wav|aiff)$/i,
+      this.$('.submission-upload')
+    );
+
+    WavPool.bindUploadField(
+      /(\.|\/)(jpe?g|png|gif)$/i,
+      this.$('.sub-image-upload'),
+      this.$('.sub-image-preview'));
 
     return this;
   }

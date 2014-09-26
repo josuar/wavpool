@@ -13,24 +13,35 @@
 #
 
 class Submission < ActiveRecord::Base
+  include ApplicationHelper
+  
   validates :image_url, :remote_url, :user, presence: true
   validate :image_url_is_valid_image
   validate :remote_url_is_valid_audio
   
-  after_initialize :ensure_picture
+  after_initialize :ensure_image
+
+  before_validation :get_old_image
+  after_save :delete_old_image
   
   belongs_to :user
   
   private
   
-  def ensure_picture
-    self.image_url ||= 'default.gif';
+  def ensure_image
+    self.image_url ||= 'default.gif'
+  end
+
+  def get_old_image
+    @old_image = self.image_url
+  end
+
+  def delete_old_image
+    S3_BUCKET.objects[@old_image].delete
   end
   
-  def image_url_is_valid_image
-    return
-    
-    url = URI.parse(self.image_url)
+  def image_url_is_valid_image    
+    url = s3_url(self.image_url)
     
     Net::HTTP.start(url.host, url.port) do |http|
       unless http.head(url.path)['Content-Type'].start_with? 'image'
@@ -39,14 +50,12 @@ class Submission < ActiveRecord::Base
     end
   end
   
-  def remote_url_is_valid_audio
-    return 
-    
-    url = URI.parse(self.audio_url)
+  def remote_url_is_valid_audio    
+    url = s3_url(self.remote_url)
     
     Net::HTTP.start(url.host, url.port) do |http|
       unless http.head(url.path)['Content-Type'].start_with? 'audio'
-        errors.add(:audio_url, 'must be a valid audio file')
+        errors.add(:remote_url, 'must be a valid audio file')
       end
     end
   end

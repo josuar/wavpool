@@ -15,6 +15,8 @@
 //= require jquery.serializejson
 //= require jquery.ui.widget
 //= require jquery.fileupload
+//= require jquery.fileupload-process.js
+//= require jquery.fileupload-validate.js
 //= require bootstrap
 //= require underscore
 //= require backbone
