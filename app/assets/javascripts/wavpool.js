@@ -36,6 +36,10 @@ window.WavPool = {
   },
   
   s3Url: function (url) {
+    if (url === '') {
+      return '';
+    }
+    
     return this.s3Bucket + url;
   },
 
@@ -64,7 +68,7 @@ window.WavPool = {
       var $fileInput = options.$fileInput;
       var $previewEl = options.$previewEl;
       var $progressBar = options.$progressBar;
-
+      
       var $form = $($fileInput.parents('form'));
       var $submitButton = $form.find("button");
 
@@ -80,6 +84,7 @@ window.WavPool = {
         dataType: 'XML',
         replaceFileInput: false,
         maxNumberOfFiles: 1,
+        dropZone: $fileInput,
 
         add: function (event, data) {
           var validated = true;

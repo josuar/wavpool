@@ -3,6 +3,26 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
 
 	initialize: function () {
     this.listenTo(this.model, "sync", this.render);
+    
+    this.listenTo(this.model.submissions(), "add", this.addSubmission);
+    this.listenTo(this.model.submissions(), "remove", this.removeSubmission);
+  },
+  
+  addSubmission: function (submission) {
+    var subview = new WavPool.Views.SubmissionShow({
+      model: submission,
+      showDescription: false
+    });
+    
+    this.addSubview(".submissions", subview);
+  },
+  
+  removeSubmission: function (list) {
+    var subview = _.find(this.subviews(".submissions"), function (subview) {
+      return subview.model === list;
+    });
+    
+    this.removeSubview(".submissions", subview)
   },
 
   render: function () {    
@@ -11,6 +31,7 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
     });
 
     this.$el.html(renderedContent);
+    this.attachSubviews();
 
     return this;
   }

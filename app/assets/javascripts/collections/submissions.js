@@ -1,9 +1,7 @@
 WavPool.Collections.Submissions = Backbone.Collection.extend({
   url: "api/submissions",
   
-  model: WavPool.Models.Submission,
-  
-  initialize: function (models, options) {
-    this.profile = options.profile;
-  }
+  model: WavPool.Models.Submission
 });
+
+WavPool.submissions = new WavPool.Collections.Submissions();

@@ -1,9 +1,12 @@
 WavPool.Routers.Router = Backbone.SwappingRouter.extend({
   routes: {    
+    "" : "root",
+    
     "profiles/:id" : "profileShow",
     "profile/edit" : "profileEdit",
     
-    "submissions/new" : "submissionNew"
+    "submissions/new" : "submissionNew",
+    "submissions/:id" : "submissionShow"
   },
 
   initialize: function (options) {
@@ -18,6 +21,17 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
     var view = new WavPool.Views.SubmissionForm({
       model: new WavPool.Models.Submission(),
       collection: WavPool.profile.submissions()
+    });
+
+    this._swapView(view);
+  },
+  
+  submissionShow: function (id) {
+    var submission = WavPool.submissions.getOrFetch(id);
+
+    var view = new WavPool.Views.SubmissionShow({
+      showDescription: true,
+    	model: submission
     });
 
     this._swapView(view);

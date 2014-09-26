@@ -3,7 +3,7 @@ class Api::SubmissionsController < ApplicationController
     @submission = current_user.submissions.new(submission_params)
     
     if @submission.save
-      render json: @submission
+      render :show
     else
       render json: @submission.errors.full_messages,
         status: :unprocessable_entity
@@ -11,6 +11,9 @@ class Api::SubmissionsController < ApplicationController
   end
   
   def show
+    @submission = Submission.includes(user: :profile).find(params[:id])
+    
+    render :show
   end
   
   def update
