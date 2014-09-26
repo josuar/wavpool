@@ -27,7 +27,7 @@
     <br>
     
     <% if (submission.isOwnedByCurrentUser()) { %>
-    <a class="btn btn-default btn-xs" href="#" disabled>
+    <a class="btn btn-default btn-xs" href="#/submissions/<%= submission.id %>/edit">
       <span class="glyphicon glyphicon-pencil"></span>
     </a>
     <% } %>

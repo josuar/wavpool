@@ -1,14 +1,16 @@
 <div class="col-md-10 col-md-offset-1">
   <form class="directUpload">
-    <h3>Upload a track</h3>
+    <% if (submission.isNew()) { %>
+      <h3>Upload a track</h3>
     
-    <input type="file" name="submission[remote_url]" class="form-control submission-upload"  />
+      <input type="file" name="submission[remote_url]" class="form-control submission-upload"  />
 
-    <div class="progress">
-      <div class="progress-bar submission-progress">
+      <div class="progress">
+        <div class="progress-bar submission-progress">
+        </div>
       </div>
-    </div>
-    <br>
+      <br>
+    <% } %>
   
     <h4>Info</h4>
     <hr>

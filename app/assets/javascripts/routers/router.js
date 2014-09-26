@@ -6,7 +6,8 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
     "profile/edit" : "profileEdit",
     
     "submissions/new" : "submissionNew",
-    "submissions/:id" : "submissionShow"
+    "submissions/:id" : "submissionShow",
+    "submissions/:id/edit" : "submissionEdit"
   },
 
   initialize: function (options) {
@@ -40,6 +41,25 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
 
     var view = new WavPool.Views.SubmissionShow({
       showExtendedInfo: true,
+    	model: submission
+    });
+
+    this._swapView(view);
+  },
+  
+  submissionEdit: function (id) {
+    if (!WavPool.profile) {
+      WavPool.alert({
+        context: "warning",
+        message: "You must be signed in to do that."
+      });
+      
+      return;
+    }
+    
+    var submission = WavPool.submissions.getOrFetch(id);
+
+    var view = new WavPool.Views.SubmissionForm({
     	model: submission
     });
 

@@ -11,3 +11,4 @@ json.image_url @submission.image_url
 json.description @submission.description
 
 json.timestamp time_ago_in_words(@submission.created_at)
+json.created_at @submission.created_at

@@ -17,6 +17,14 @@ class Api::SubmissionsController < ApplicationController
   end
   
   def update
+    @submission = Submission.find(params[:id])
+    
+    if @submission.update(submission_params)
+      render :show
+    else
+      render json: @submission.errors.full_messages,
+        status: :unprocessable_entity
+    end
   end
   
   private

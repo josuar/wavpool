@@ -21,6 +21,7 @@ json.submissions @profile.user.submissions do |submission|
   json.image_url submission.image_url
   
   json.timestamp time_ago_in_words(submission.created_at)
+  json.created_at submission.created_at
   
   json.profile do
     json.id @profile.id
