@@ -12,13 +12,14 @@ Though anyone can surf the WavPool to discover new music, you need to be registe
 ### Profiles
 Users can create profiles with in-depth biographies and links to their other profiles across the web. Maintain your presence in the WavPool and keep your fans current.
 
+### File upload
+Upload your latest creations to the Pool for the world to hear! You can add a title and description to each track, as well as any album art for the release.
+
 
 ## Coming Soon
 
 
 ### File upload
-Upload your latest creations to the Pool for the world to hear! You can add a title and description to each track, as well as any album art for the release.
-
 Once your file is uploaded and processed, a beautiful waveform will appear to guide listeners through the crests and troughs of your submission.
 
 ### Audio playback
