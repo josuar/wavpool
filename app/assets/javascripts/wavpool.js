@@ -6,7 +6,13 @@ window.WavPool = {
 
   initialize: function (options) {
     if (options.profileId !== 0) {
-      this.profile = WavPool.profiles.getOrFetch(options.profileId);
+      this.profile = WavPool.profiles.getOrFetch(
+        options.profileId,
+        function (profile) {
+          WavPool.user = new WavPool.Models.User(); 
+          WavPool.user.fetch();
+        }
+      );
     } else {
       this.profile = null;
     }

@@ -1,4 +1,9 @@
 json.id @profile.id
+
+if @profile.user == current_user
+  json.user_id current_user.id
+end
+
 json.display_name @profile.display_name
 
 json.picture_url @profile.picture_url

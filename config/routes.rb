@@ -7,6 +7,8 @@ Wavpool::Application.routes.draw do
   resources :signed_urls, only: [:index]
   
   namespace :api, defaults: { format: :json } do
+    resource :user, only: :show
+    
     resources :profiles, only: [:show, :update]
     resources :submissions, only: [:create, :show, :update]
   end

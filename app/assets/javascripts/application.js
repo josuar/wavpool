@@ -27,7 +27,7 @@
 //= require_tree ./routers
 //= require_tree .
 
-Backbone.Collection.prototype.getOrFetch = function (id) {
+Backbone.Collection.prototype.getOrFetch = function (id, cb) {
   var model = this.get(id);
   
   if (model) {
@@ -38,6 +38,11 @@ Backbone.Collection.prototype.getOrFetch = function (id) {
     model.fetch({
       success: function () {
         this.add(model);
+        
+        if (cb) {
+          cb(model);
+        }
+        
       }.bind(this)
     });
   }
