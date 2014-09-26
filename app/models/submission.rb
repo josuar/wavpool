@@ -23,21 +23,29 @@ class Submission < ActiveRecord::Base
 
   before_validation :get_old_image
   after_save :delete_old_image
+  before_destroy :delete_resources
   
   belongs_to :user
+
+  def write_attribute(attr_name, value)
+    @old_image = self.image_url if attr_name == 'image_url'
+
+    super
+  end
   
   private
   
   def ensure_image
-    self.image_url ||= 'default.gif'
-  end
-
-  def get_old_image
-    @old_image = self.image_url
+    self.image_url ||= 'default.png'
   end
 
   def delete_old_image
-    S3_BUCKET.objects[@old_image].delete
+    S3_BUCKET.objects[@old_image].delete if @old_image
+  end
+
+  def delete_resources
+    S3_BUCKET.objects[self.image_url].delete
+    S3_BUCKET.objects[self.remote_url].delete
   end
   
   def image_url_is_valid_image    

@@ -40,11 +40,11 @@ WavPool.Views.ProfileEdit = Backbone.View.extend({
 
     this.$el.html(renderedContent);
     
-    WavPool.bindUploadField(
-      /(\.|\/)(jpe?g|png|gif)$/i,
-      this.$('.upload-field'),
-      this.$('.upload-preview')
-    );
+    WavPool.bindUploadField({
+      fileTypes: /(\.|\/)(jpe?g|png|gif)$/i,
+      $fileInput: this.$('.upload-field'),
+      $previewEl: this.$('.upload-preview')
+    });
 
     return this;
   }
