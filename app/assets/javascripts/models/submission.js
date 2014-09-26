@@ -27,5 +27,10 @@ WavPool.Models.Submission = Backbone.Model.extend({
     }
     
     return WavPool.profile.id === this.get("profile").id;
+  },
+  
+  getShareUrl: function () {
+    var loc = window.location;
+    return loc.protocol + "//" + loc.host + "/#/submissions/" + this.id
   }
 });
