@@ -28,6 +28,7 @@ class Profile < ActiveRecord::Base
 
   def write_attribute(attr_name, value)
     @old_picture = self.picture_url if attr_name == 'picture_url' && value != self.picture_url
+    @old_picture = nil if @old_picture == 'default.gif'
 
     super
   end
