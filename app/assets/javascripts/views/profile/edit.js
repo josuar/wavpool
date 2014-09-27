@@ -17,11 +17,16 @@ WavPool.Views.ProfileEdit = Backbone.View.extend({
     this.model.save(params, {
       success: function (model) {
         $('#profile-display-name').text(model.escape('display_name'));
-        
-        WavPool.alerter.flashNow({
+
+        WavPool.alerter.flash({
           context: "success",
           message: "You have successfully updated your profile."
         });
+
+        Backbone.history.navigate(
+          "#/profiles/" + model.id,
+          { trigger: true }
+        );
       },
       
       error: function (profile, response) {        

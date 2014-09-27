@@ -16,6 +16,11 @@ WavPool.Views.SubmissionForm = Backbone.View.extend({
     
     var callbacks = {
       success: function (submission) {
+        WavPool.alerter.flash({
+          context: "success",
+          message: "Track update was successful."
+        });
+
         Backbone.history.navigate(
           "#/submissions/" + submission.id,
           { trigger: true }
@@ -23,6 +28,11 @@ WavPool.Views.SubmissionForm = Backbone.View.extend({
       },
       
       error: function (submission, response) {
+        WavPool.alerter.flashNow({
+          context: "danger",
+          message: response.responseJSON
+        });
+
         this.model.set(submission.attributes);
       }.bind(this),
       

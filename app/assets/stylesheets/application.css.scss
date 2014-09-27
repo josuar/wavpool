@@ -25,10 +25,18 @@
 }
 
 .submissions {
-  overflow-y: scroll;
-  height: 100%;
+  /*overflow-y: scroll;
+  height: 100%;*/
 }
 
 .liked {
   color: white;
+}
+
+.alerts {
+  position: absolute;
+  top: 55px;
+  right: -15px;
+  z-index: 2;
+  width: 400px;
 }
