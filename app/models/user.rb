@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
       joins(:user).
       joins("LEFT OUTER JOIN follows ON users.id = follows.followee_id").
       where(
-        "follows.follower_id = :id OR submissions.user_id = :id",
+        "follows.follower_id = :id",
         id: self.id
       ).order(created_at: :desc)
   end

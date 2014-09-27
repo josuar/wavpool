@@ -2,22 +2,14 @@
 <img src="<%= WavPool.s3Url(submission.escape("image_url")) %>" class="img-responsive media-object pull-left" width="64" height="64" />
   <div class="media-body">
     <h4 class="media-heading">
-      <% if (!showExtendedInfo) { %>
-        <a href="#/submissions/<%= submission.id %>">
-          <%= submission.escape('title') %>
-        </a>       
-      <% } else { %>
-        <%= submission.escape('title') %>
-      <% } %>
+      <a href="#/submissions/<%= submission.id %>"><%= submission.escape('title') %></a>       
       
-      <% if (showExtendedInfo) { %>
+      <% if (showProfile) { %>
         <small>
           <% if (submission.get("profile")) { %>
-          by <a href="#/profiles/<%= submission.get("profile").id %>">
-            <%= submission.get("profile").name %>
-          </a>
+          by <a href="#/profiles/<%= submission.get("profile").id %>"><%= submission.get("profile").name %></a>
           <% } %> 
-        </small>
+        </small>      
       <% } %>
       <br>
       <time><small>uploaded <%= submission.timestamp() %></small></time>
@@ -41,7 +33,7 @@
       <span class="glyphicon glyphicon-heart"></span>
     </a>
     
-    <% if (showExtendedInfo) { %>
+    <% if (showDescription) { %>
       <p><%= submission.get("description") %></p>
     <% } %>
   </div>

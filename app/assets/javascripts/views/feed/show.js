@@ -1,7 +1,7 @@
-WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
-	template: JST["profile/show"],
+WavPool.Views.FeedShow = Backbone.CompositeView.extend({
+	template: JST["feed/show"],
 
-	initialize: function () {
+	initialize: function () {    
     this.listenTo(this.model, "sync", this.render);
     
     this.listenTo(this.model.submissions(), "add", this.addSubmission);
@@ -14,9 +14,9 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
     var subview = new WavPool.Views.SubmissionShow({
       model: submission,
       showDescription: false,
-      showProfile: false
+      showProfile: true
     });
-
+    
     this.addSubview(".submissions", subview);
   },
   
@@ -30,23 +30,11 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
 
   render: function () {    
     var renderedContent = this.template({
-      profile: this.model
+      feed: this.model
     });
-
+    
     this.$el.html(renderedContent);
     this.attachSubviews();
-    
-    this.$('.follow-button').toggleButton({      
-      onAction: "Follow",
-      offAction: "Unfollow",
-      
-      on: this.model.get("followed"),
-      
-      onIcon: "plus",
-      offIcon: "minus",
-      
-      actionUrl: "api/profiles/" + this.model.get("user_id") + "/follow"
-    });
 
     return this;
   }
