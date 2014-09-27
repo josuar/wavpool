@@ -26,6 +26,9 @@ class Submission < ActiveRecord::Base
   
   belongs_to :user
 
+  has_many :in_likes, class_name: "Like", foreign_key: :likee_id
+  has_many :likes, through: :in_likes, source: :liker
+
   def write_attribute(attr_name, value)
     @old_image = self.image_url if attr_name == 'image_url' && value != self.image_url
 
