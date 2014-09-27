@@ -20,7 +20,9 @@
   
   <div class="form-group">
     <span class="glyphicon glyphicon-user"></span>
-    <%= profile.escape("followed_count") %>&nbsp;
+    <span class="followed-count">
+      <%= profile.escape("followed_count") %>
+    </span>&nbsp;
 
     <span class="glyphicon glyphicon-upload"></span>
     <%= profile.escape("submission_count") %>

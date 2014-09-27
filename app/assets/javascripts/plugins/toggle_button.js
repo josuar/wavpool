@@ -13,6 +13,9 @@ $.ToggleButton = function (el, options) {
 
   this.onClass = "" || options.onClass;
 
+  this.onOn = options.onOn;
+  this.onOff = options.onOff;
+
   this.noText = options.noText || false;
   this.buttonStyle = options.buttonStyle || "primary";
   
@@ -36,11 +39,16 @@ $.ToggleButton.prototype.handleClick = function (event) {
       dataType: "JSON",
       success: function () {
         this.followState = this.onState;
+        if (this.onOn) {
+          this.onOn();
+        }
+
         this.render();
       }.bind(this)
     });
     
     this.followState = this.oningState;
+
     this.render();
   } else {
     $.ajax({
@@ -50,6 +58,10 @@ $.ToggleButton.prototype.handleClick = function (event) {
       success: function () {
         this.followState = this.offState;
         this.render();
+
+        if (this.onOff) {
+          this.onOff();
+        }
       }.bind(this)
     });
     
