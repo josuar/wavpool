@@ -22,6 +22,7 @@ $.ToggleButton = function (el, options) {
   this.actionUrl = options.actionUrl;
   
   this.render();
+  
   this.$el.on("click", this.handleClick.bind(this));
 };
 

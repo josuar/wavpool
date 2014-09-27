@@ -8,15 +8,7 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
     this.listenTo(this.model, "sync change", this.render);
   },
 
-  render: function () {    
-    var renderedContent = this.template({
-      submission: this.model,
-      showDescription: this.showDescription,
-      showProfile: this.showProfile
-    });
-
-    this.$el.html(renderedContent);
-
+  onRender: function () {
     this.$('.like-button').toggleButton({      
       onAction: "Like",
       offAction: "Unlike",
@@ -32,6 +24,16 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
       
       actionUrl: "api/submissions/" + this.model.id + "/like"
     });
+  },
+
+  render: function () {    
+    var renderedContent = this.template({
+      submission: this.model,
+      showDescription: this.showDescription,
+      showProfile: this.showProfile
+    });
+
+    this.$el.html(renderedContent);    
 
     return this;
   }
