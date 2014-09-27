@@ -1,8 +1,8 @@
 json.id @profile.id
 json.user_id @profile.user.id
 
-json.following_count @profile.user.followees.count
-json.followed_count @profile.user.followers.count
+json.following_count @profile.user.followees.size
+json.followed_count @profile.user.followers.size
 
 json.submission_count @profile.user.submissions.count
 

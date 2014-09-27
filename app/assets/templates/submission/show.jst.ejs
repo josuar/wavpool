@@ -14,7 +14,7 @@
       <br>
       <time><small>uploaded <%= submission.timestamp() %></small></time>
     </h4>
-    <audio id="audio" src="<%= WavPool.s3Url(submission.escape('remote_url')) %>" controls></audio>
+    <audio id="audio" src="<%= WavPool.s3Url(submission.escape('remote_url')) %>" preload="metadata" controls></audio>
     
     <br>
     
