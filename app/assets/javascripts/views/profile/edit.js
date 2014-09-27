@@ -18,14 +18,14 @@ WavPool.Views.ProfileEdit = Backbone.View.extend({
       success: function (model) {
         $('#profile-display-name').text(model.escape('display_name'));
         
-        WavPool.alert({
+        WavPool.alerter.flashNow({
           context: "success",
           message: "You have successfully updated your profile."
         });
       },
       
       error: function (profile, response) {        
-        WavPool.alert({
+        WavPool.alerter.flashNow({
           context: "danger",
           message: response.responseJSON
         });

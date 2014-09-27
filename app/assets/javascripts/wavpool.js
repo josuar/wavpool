@@ -19,23 +19,18 @@ window.WavPool = {
 
     this.s3Bucket = options.s3Bucket;
 
-    this.alertView = new WavPool.Views.Alert();
+    this.alerter = $('.alerts').alerter();
 
     this.beginRouting({
       $rootEl: $('main')
     });
-  },
-  
-  alert: function (alert) {
-    this.alertView.clear();
-    this.alertView.set(alert);
   },
 
   beginRouting: function (options) {
     var router = new WavPool.Routers.Router(options);
     
     router.on('route', function () {
-      this.alertView.clear();
+      this.alerter.renderDeferred();
     }.bind(this));
 
     Backbone.history.start();
@@ -62,7 +57,7 @@ window.WavPool = {
       replace: true
     });
     
-    this.alert({
+    this.alerter.flash({
       context: "warning",
       message: "That page doesn't exist!"
     });
@@ -97,14 +92,14 @@ window.WavPool = {
           var file = data.files[0];
 
           if (!fileTypes.test(file.name)) {
-            WavPool.alert({
+            WavPool.alerter.flashNow({
               context: "danger",
               message: "Invalid audio file type."
             });
 
             validated = false;
           } else if (file.size > 0xA00000) {
-            WavPool.alert({
+            WavPool.alerter.flashNow({
               context: "danger",
               message: "File too large."
             });
@@ -118,8 +113,6 @@ window.WavPool = {
 
             data.formData = formData;
             data.submit();
-
-            WavPool.alertView.clear();
           }
         },
 

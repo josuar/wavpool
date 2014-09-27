@@ -44,8 +44,9 @@ class Profile < ActiveRecord::Base
   end
 
   def delete_resources
-    S3_BUCKET.objects[self.image_url].delete
-    S3_BUCKET.objects[self.remote_url].delete
+    if (self.picture_url != 'default.gif')
+      S3_BUCKET.objects[self.picture_url].delete 
+    end
   end
   
   def picture_url_is_valid_image

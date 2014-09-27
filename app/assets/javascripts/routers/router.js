@@ -32,7 +32,7 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
   
   submissionNew: function () {
     if (!WavPool.profile) {
-      WavPool.alert({
+      WavPool.alerter.flash({
         context: "warning",
         message: "You must be signed in to do that."
       });
@@ -62,7 +62,7 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
   
   submissionEdit: function (id) {
     if (!WavPool.profile) {
-      WavPool.alert({
+      WavPool.alerter.flash({
         context: "warning",
         message: "You must be signed in to do that."
       });
@@ -91,7 +91,7 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
   
   profileEdit: function () {
     if (!WavPool.profile) {
-      WavPool.alert({
+      WavPool.alerter.flash({
         context: "warning",
         message: "You must be signed in to do that."
       });
