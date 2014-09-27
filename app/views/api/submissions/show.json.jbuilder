@@ -12,3 +12,8 @@ json.description @submission.description
 
 json.timestamp time_ago_in_words(@submission.created_at)
 json.created_at @submission.created_at
+
+if signed_in?
+  json.liked current_user.likes?(@submission)
+end
+json.likes @submission.likes.count

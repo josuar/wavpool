@@ -16,6 +16,23 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
     });
 
     this.$el.html(renderedContent);
+
+    this.$('.like-button').toggleButton({      
+      onAction: "Like",
+      offAction: "Unlike",
+
+      noText: true,
+      buttonStyle: "default",
+      onClass: "liked",
+      
+      on: this.model.get("liked"),
+      
+      onIcon: "heart",
+      offIcon: "heart",
+      
+      actionUrl: "api/submissions/" + this.model.id + "/like"
+    });
+
     return this;
   }
 });

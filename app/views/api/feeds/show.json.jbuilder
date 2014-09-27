@@ -2,6 +2,11 @@ json.submissions @feed do |submission|
   json.id submission.id
   json.title submission.title
   json.description submission.description
+
+  if signed_in?
+    json.liked current_user.likes?(submission)
+  end
+  json.likes submission.likes.count
   
   json.remote_url submission.remote_url
   json.image_url submission.image_url

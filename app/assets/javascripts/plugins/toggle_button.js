@@ -10,6 +10,11 @@ $.ToggleButton = function (el, options) {
   
   this.onAction = options.onAction;
   this.offAction = options.offAction;
+
+  this.onClass = "" || options.onClass;
+
+  this.noText = options.noText || false;
+  this.buttonStyle = options.buttonStyle || "primary";
   
   this.onIcon = options.onIcon;
   this.offIcon = options.offIcon;
@@ -62,16 +67,24 @@ $.ToggleButton.prototype.render = function () {
   }
   
   this.$el.empty();
-  this.$el.removeClass("btn-primary btn-danger")
+  this.$el.removeClass(this.onClass + " btn-danger btn-" + this.buttonStyle)
   
   if (this.followState === this.offState) {
     this.$el.append($('<span>').addClass("glyphicon glyphicon-" + this.onIcon));
-    this.$el.append(" " + this.onAction).addClass("btn-primary");
+    this.$el.addClass("btn-" + this.buttonStyle);
+
+    if (!this.noText) {
+      this.$el.append(" " + this.onAction);
+    }
   } else {
     this.$el.append(
-      $('<span>').addClass("glyphicon glyphicon-" + this.offIcon)
+      $('<span>').addClass(this.onClass + " glyphicon glyphicon-" + this.offIcon)
     );
-    this.$el.append(" " + this.offAction).addClass("btn-danger");
+    this.$el.addClass("btn-danger");
+
+    if (!this.noText) {
+      this.$el.append(" " + this.offAction);
+    }
   }
   
   this.$el.prop("disabled", false);

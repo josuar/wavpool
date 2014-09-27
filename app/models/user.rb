@@ -56,6 +56,10 @@ class User < ActiveRecord::Base
   def follows?(user)
     self.followees.include?(user)
   end
+
+  def likes?(submission)
+    self.likes.include?(submission)
+  end
   
   def feed
     Submission.

@@ -15,6 +15,8 @@ Wavpool::Application.routes.draw do
       resource :follow, only: [:create, :destroy]
     end
     
-    resources :submissions, only: [:create, :show, :update]
+    resources :submissions, only: [:create, :show, :update] do
+      resource :like, only: [:create, :destroy]
+    end
   end
 end
