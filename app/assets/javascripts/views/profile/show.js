@@ -15,7 +15,7 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
       model: submission,
       showExtendedInfo: false
     });
-    
+    window.subView = subview;
     this.addSubview(".submissions", subview);
   },
   
@@ -46,7 +46,7 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
       
       actionUrl: "api/profiles/" + this.model.get("user_id") + "/follow"
     });
-
+    window.view = this;
     return this;
   }
 });

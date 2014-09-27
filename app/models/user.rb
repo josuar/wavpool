@@ -54,6 +54,17 @@ class User < ActiveRecord::Base
   def follows?(user)
     self.followees.include?(user)
   end
+  
+  def feed
+    Submission.
+      includes(user: :profile).
+      joins(:user).
+      joins("LEFT OUTER JOIN follows ON users.id = follows.followee_id").
+      where(
+        "follows.follower_id = :id OR submissions.user_id = :id",
+        id: self.id
+      ).order(created_at: :desc)
+  end
 
   private
 

@@ -4,7 +4,7 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
 	initialize: function (options) {
     this.showExtendedInfo = options.showExtendedInfo;
     
-    this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.model, "sync change", this.render);
   },
 
   render: function () {    
@@ -14,7 +14,6 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
     });
 
     this.$el.html(renderedContent);
-
     return this;
   }
 });

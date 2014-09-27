@@ -24,7 +24,9 @@ class Api::ProfilesController < ApplicationController
   end
   
   def current_profile
-    @profile ||= Profile.includes(user: :submissions).find(params[:id])
+    @profile ||= Profile.
+      includes(user: :submissions).
+      find(params[:id])
   end
   
   def require_profile_ownership!
