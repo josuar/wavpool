@@ -1,12 +1,12 @@
 class Api::LikesController < ApplicationController
   def create
-    @follow = current_user.likes.create(likee: current_submission)
+    @follow = current_user.out_likes.create(likee: current_submission)
     
     render json: @follow
   end
 
   def destroy
-    like = current_user.likes.find_by_liker_id(current_user.id)
+    like = current_user.out_likes.find_by_liker_id(current_user.id)
     
     like.destroy
     
