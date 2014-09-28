@@ -1,7 +1,14 @@
 <div class="media">
-<img src="<%= WavPool.s3Url(submission.escape("image_url")) %>" class="img-responsive media-object pull-left" width="64" height="64" />
+  <div class="image-container pull-left media-object text-center">
+    <img src="<%= WavPool.s3Url(submission.escape("image_url")) %>" class="track-image" />
+  </div>
+
   <div class="media-body">
     <h4 class="media-heading">
+      <a href="#" class="pull-left play-button" data-audio-url="<%= WavPool.s3Url(submission.escape('remote_url')) %>"> 
+        <h4><span class="glyphicon glyphicon-play"></span></h4>
+      </a>
+
       <a href="#/submissions/<%= submission.id %>"><%= submission.escape('title') %></a>       
       
       <% if (showProfile) { %>
@@ -14,23 +21,25 @@
       <br>
       <time><small>uploaded <%= submission.timestamp() %></small></time>
     </h4>
-    <audio id="audio" src="<%= WavPool.s3Url(submission.escape('remote_url')) %>" preload="metadata" controls></audio>
-    
-    <br>
+
+    <div class="progress track-progress">
+      <div class="progress-bar">
+      </div>
+    </div>
     
     <% if (submission.isOwnedByCurrentUser()) { %>
     <a class="btn btn-default btn-xs" href="#/submissions/<%= submission.id %>/edit">
-      <span class="glyphicon glyphicon-pencil"></span>
+      <span class="glyphicon glyphicon-pencil"></span> Edit
     </a>
     <% } %>
     <a class="btn btn-default btn-xs" href="<%= submission.getShareUrl() %>">
-      <span class="glyphicon glyphicon-share"></span>
+      <span class="glyphicon glyphicon-share"></span> Share
     </a>
-    <a class="btn btn-default btn-xs" href="#" disabled>
-      <span class="glyphicon glyphicon-download"></span>
+    <a class="btn btn-default btn-xs" href="<%= WavPool.s3Url(submission.escape('remote_url')) %>">
+      <span class="glyphicon glyphicon-download"></span> Download
     </a>
     <a class="btn btn-default btn-xs like-button" href="#">
-      <span class="glyphicon glyphicon-heart"></span>
+      <span class="glyphicon glyphicon-heart"></span> Like
     </a>
     
     <% if (showDescription) { %>
