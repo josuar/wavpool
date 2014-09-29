@@ -6,9 +6,11 @@ if signed_in?
   json.liked current_user.likes?(submission)
 end
 
-json.likes submission.likes_count
+json.likes submission.likes.size
 
-json.comments submission.comments
+json.comments submission.comments do |comment|
+  json.partial! 'api/comments/comment', comment: comment
+end
 
 json.remote_url submission.remote_url
 json.image_url submission.image_url

@@ -26,8 +26,7 @@ class Submission < ActiveRecord::Base
   
   belongs_to :user
 
-  has_many :in_likes, class_name: "Like", foreign_key: :likee_id
-  has_many :likes, through: :in_likes, source: :liker
+  has_many :likes, foreign_key: :likee_id
   
   has_many :comments
 
