@@ -25,7 +25,7 @@ class Api::ProfilesController < ApplicationController
   
   def current_profile
     @profile ||= Profile.
-      includes(user: :submissions).
+      includes(user: { submissions: [:comments, :likes] }).
       find(params[:id])
   end
   

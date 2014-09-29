@@ -1,5 +1,21 @@
 WavPool.Models.Submission = Backbone.Model.extend({
   urlRoot: "api/submissions",
+  
+  comments: function () {
+    this._comments = this._comments ||
+      new WavPool.Collections.Comments([], { submission: this });
+      
+    return this._comments;
+  },
+  
+  parse: function (payload) {
+    if (payload.comments) {
+      this.comments().set(payload.comments, { parse: true } );
+      delete payload.comments;
+    }
+    
+    return payload;
+  },
 
   imageUrl: function () {
     if (this.attributes.image_url) {

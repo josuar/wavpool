@@ -166,6 +166,14 @@ $.fn.audioPlayer = function () {
     
     return 0;
   };
+  
+  this.timestamp = function () {
+    if (!currentTrack) {
+      return 0;
+    }
+    
+    return audio.currentTime;
+  }
 
   this.initialize = function () {
     $audio.on("play", onAudioPlayPause);
