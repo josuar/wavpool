@@ -25,7 +25,7 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
       return subview.model === list;
     });
     
-    this.removeSubview(".submissions", subview)
+    this.removeSubview(".submissions", subview);
   },
 
   render: function () {    

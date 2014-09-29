@@ -5,8 +5,13 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
     this.showDescription = options.showDescription;
     this.showProfile = options.showProfile;
     
-    this.listenTo(this.model, "sync change", this.render);
+    this.invertedComments = {};
+    
+    this.listenTo(this.model, "sync change", this.render);   
+    this.listenTo(this.model.comments(), "add", this.addComment);
   },
+  
+  className: "submission",
 
   events: {
     "click .play-button" : "onPlayClick",
@@ -35,19 +40,42 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
       });
       
       this._bindRemote();
-
       this.bound = true;
     }
+  },
+  
+  addComment: function (comment) {
+    this._addCommentLine(comment);
+  },
+  
+  removeCommentForm: function () {
+    this.removeSubview(
+      ".comment-placeholder",
+      this.subviews(".comment-placeholder")[0]
+    );
+  },
+  
+  addCommentForm: function () {
+    var subview = new WavPool.Views.CommentNew({
+      model: new WavPool.Models.Comment(),
+      collection: this.model.comments()
+    });
+    
+    this.addSubview(".comment-placeholder", subview);
   },
   
   _bindRemote: function() {
     WavPool.player.bindRemote({
       $progressBar: this.$('.progress'),
       $playButton: this.$('.play-button'),
+      comments: this.invertedComments,
       reset: function () {
         this.bound = false;
+        this.removeCommentForm();
       }.bind(this)
     });
+    
+    this.addCommentForm();
   },
 
   onRender: function () {
@@ -71,6 +99,32 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
       this._bindRemote();
       this.bound = true;
     }
+    
+    this.model.comments().each(this.addComment.bind(this));
+  },
+  
+  _addCommentLine: function (comment) {
+    var $bar = this.$('.track-progress');
+    var $line = $('<div>').addClass("comment-line");
+    
+    var left = Math.floor(
+      (comment.get("position") / 100) * $bar.width()
+    );
+    
+    $line.css("left", left);
+    $bar.append($line);
+    
+    this._invertComment(comment, $line);
+  },
+  
+  _invertComment: function (comment, line) {
+    var timestamp = comment.get("timestamp");   
+    
+    this.invertedComments[timestamp] = this.invertedComments[timestamp] || [];
+    this.invertedComments[timestamp].push({
+      comment: comment,
+      line: line
+    }); 
   },
 
   render: function () {    
@@ -79,8 +133,11 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
       showDescription: this.showDescription,
       showProfile: this.showProfile
     });
+    
+    this.invertedComments = {};
 
-    this.$el.html(renderedContent);    
+    this.$el.html(renderedContent);   
+    this.attachSubviews(); 
 
     return this;
   }

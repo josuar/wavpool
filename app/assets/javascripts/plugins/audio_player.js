@@ -23,6 +23,8 @@ $.fn.audioPlayer = function () {
 
   var remoteOptions = null;
   
+  var currentComment = null;
+  
   var resetRemote = function () {
     if (!remoteOptions) {
       return;
@@ -80,6 +82,42 @@ $.fn.audioPlayer = function () {
 
     if (remoteOptions) {
       updateProgressBar(remoteOptions.$progressBar);
+      processComments();
+    }
+  };
+  
+  var processComments = function () {
+    if (!remoteOptions.comments || currentComment) {
+      return;
+    }
+    
+    var comment = remoteOptions.comments[Math.floor(audio.currentTime)];
+    
+    if (comment) {
+      currentComment = comment[0];
+      currentComment.line.addClass("active");
+      
+      var $commentBubble = $('<div>').
+        addClass("progress-comment").
+        text(currentComment.comment.escape("content"));
+        
+      var offset = remoteOptions.$progressBar.children('.progress-bar').width();
+      
+      remoteOptions.$progressBar.prepend($commentBubble);
+        
+      if (currentComment.comment.get("position") < 50) {
+        $commentBubble.css("left", offset);
+      } else {
+        console.log($commentBubble.width());
+        $commentBubble.css("left", offset - $commentBubble.width() - 15);
+      }
+      
+      _.delay(function () {
+        currentComment.line.removeClass("active");
+        currentComment = null;
+        
+        $commentBubble.remove();
+      }, 3000);
     }
   };
 
@@ -167,12 +205,20 @@ $.fn.audioPlayer = function () {
     return 0;
   };
   
+  this.duration = function () {
+    if (!currentTrack) {
+      return 0;
+    }
+    
+    return audio.duration;
+  }
+  
   this.timestamp = function () {
     if (!currentTrack) {
       return 0;
     }
     
-    return audio.currentTime;
+    return Math.floor(audio.currentTime);
   }
 
   this.initialize = function () {

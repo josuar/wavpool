@@ -5,5 +5,6 @@ json.profile do
 end
 
 json.timestamp comment.track_timestamp
+json.position comment.track_position
 
 json.content comment.content
