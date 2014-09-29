@@ -7,7 +7,7 @@
   
   <!-- Don't hit S3 unless we've loaded the model fully -->
   <% if (profile.attributes.picture_url) { %>
-    <img src="<%= WavPool.s3Url(profile.escape("picture_url")) %>" width="180" height="180" class="img-responsive" />
+    <img src="<%= WavPool.s3Url(profile.escape("picture_url")) %>" width="210" height="210" class="img-responsive" />
   <% } %>
   
   <h4>
@@ -48,10 +48,12 @@
   </div>
 </div>
 
-<div class="col-sm-7">
+<div class="col-sm-6">
   <div class="submissions col-xs-12"></div>
 </div>
 
-<div class="col-sm-2">
-  <!-- Stats and links go here -->
+<div class="col-sm-3">
+  <p>Keffiyeh cliche hashtag, locavore stumptown cornhole lomo banjo. Intelligentsia XOXO hoodie Neutra tofu, trust fund Helvetica plaid. Direct trade XOXO pour-over Helvetica church-key cliche beard four loko hashtag, lomo semiotics seitan vegan retro. Chillwave biodiesel mixtape, butcher cornhole freegan salvia Odd Future Kickstarter roof party lo-fi banh mi before they sold out shabby chic. Vinyl deep v hella, Brooklyn artisan Banksy single-origin coffee. You probably haven't heard of them literally 3 wolf moon, trust fund heirloom authentic narwhal put a bird on it Tumblr. VHS disrupt lo-fi photo booth distillery Schlitz.</p>
+
+<p>Letterpress iPhone cardigan actually Austin salvia, brunch YOLO before they sold out Carles selvage. Hashtag tote bag art party tofu seitan, wolf typewriter synth Tumblr dreamcatcher gluten-free jean shorts small batch Intelligentsia. Banksy Pinterest Carles, roof party crucifix Schlitz pork belly plaid skateboard brunch distillery pug sriracha. Umami wayfarers Wes Anderson sartorial typewriter. Synth hella disrupt squid Thundercats. Pickled cred Carles, Blue Bottle crucifix roof party asymmetrical art party. Authentic hashtag salvia, street art mumblecore ethical flannel Echo Park keffiyeh hella cornhole.</p>
 </div>

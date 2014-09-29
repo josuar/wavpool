@@ -42,6 +42,7 @@
 }*/
 
 .play-button {
+  margin-top: -5px;
   margin-right: 10px;
 }
 
@@ -59,4 +60,54 @@
 
 .image-container {
   width: 120px;
+}
+
+.global-player {
+  position: fixed;
+  bottom: -1px;
+  right: 152px;
+  z-index: 2;
+
+  width: 300px;
+  font-size: 1.1em;
+  box-sizing: border-box;
+  background-color: black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.global-player a {
+  color: white;
+}
+
+.player-section {
+  display: inline-block;
+}
+
+.volume-controls {
+  float: right;
+  width: 20px;
+}
+
+.playback-controls {
+  width: 50px;
+}
+
+.track-info {
+  width: 210px;
+}
+
+.prev-track,
+.next-track {
+  font-size: 0.75em;
+}
+
+.global-player .progress {
+  margin-bottom: 0px;
+  height: 5px;
+  border-radius: 0;
+}
+
+.global-player .info {
+  padding: 5px;
 }

@@ -11,7 +11,7 @@ $.fn.alerter = function () {
   var deferred = [];
 
   this.flashNow = function (alert) {
-    $el.append(this.buildAlertEl(alert));
+    $el.append(this._buildAlertEl(alert));
   }.bind(this);
 
   this.flash = function (alert) {
@@ -26,7 +26,7 @@ $.fn.alerter = function () {
     deferred = [];
   }.bind(this);
 
-  this.buildAlertEl = function (alert) {
+  this._buildAlertEl = function (alert) {
     var $alert = $('<div>').
       addClass("alert alert-dismissable alert-" + alert.context).
       text(alert.message);

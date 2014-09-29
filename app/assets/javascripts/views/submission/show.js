@@ -8,6 +8,31 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
     this.listenTo(this.model, "sync change", this.render);
   },
 
+  events: {
+    "click .play-button" : "onPlayClick"
+  },
+
+  onPlayClick: function (event) {
+    event.preventDefault();
+
+    if (this.bound) {
+      WavPool.player.togglePlayState();
+    } else {
+      WavPool.player.bindRemote({
+        $progressBar: this.$('.progress'),
+        $playButton: this.$('.play-button')
+      });
+
+      WavPool.player.playTrack({
+        url: WavPool.s3Url(this.model.get("remote_url")),
+        title: this.model.escape("title"),
+        id: this.model.id
+      });
+
+      this.bound = true;
+    }
+  },
+
   onRender: function () {
     this.$('.like-button').toggleButton({      
       onAction: "Like",
@@ -24,6 +49,15 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
       
       actionUrl: "api/submissions/" + this.model.id + "/like"
     });
+
+    if (WavPool.player.submissionId() === this.model.id) {
+      WavPool.player.bindRemote({
+        $progressBar: this.$('.progress'),
+        $playButton: this.$('.play-button')
+      });
+
+      this.bound = true;
+    }
   },
 
   render: function () {    

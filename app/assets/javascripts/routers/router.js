@@ -17,10 +17,18 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
   },
   
   root: function () {
-    this.feedShow();
   },
   
   feedShow: function () {
+    if (!WavPool.profile) {
+      WavPool.alerter.flash({
+        context: "warning",
+        message: "You must be signed in to do that."
+      });
+      
+      return;
+    }
+
     WavPool.feed.fetch();
     
     var view = new WavPool.Views.FeedShow({

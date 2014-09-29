@@ -7,6 +7,7 @@ window.WavPool = {
   initialize: function (options) {
     if (options.profileId !== 0) {
       this.profile = WavPool.profiles.getOrFetch(options.profileId);
+      this.feed = new WavPool.Models.Feed();
     } else {
       this.profile = null;
     }
@@ -14,6 +15,11 @@ window.WavPool = {
     this.s3Bucket = options.s3Bucket;
     this.alerter = $('.alerts').alerter();
 
+    // var playerView = new WavPool.Views.AudioPlayer();
+    // $('.global-player').html(playerView.render().$el);
+
+    this.player = $('.global-player').audioPlayer();
+    
     this.beginRouting({
       $rootEl: $('main')
     });

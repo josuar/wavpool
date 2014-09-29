@@ -17,5 +17,3 @@ WavPool.Models.Feed = Backbone.Model.extend({
     return payload;
   },
 });
-
-WavPool.feed = new WavPool.Models.Feed();
