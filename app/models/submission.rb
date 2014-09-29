@@ -31,6 +31,7 @@ class Submission < ActiveRecord::Base
 
   def write_attribute(attr_name, value)
     @old_image = self.image_url if attr_name == 'image_url' && value != self.image_url
+    @old_picture = nil if @old_picture == 'default.png'
 
     super
   end

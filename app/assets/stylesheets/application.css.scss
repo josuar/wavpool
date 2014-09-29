@@ -64,20 +64,27 @@
 
 .global-player {
   position: fixed;
-  bottom: -1px;
-  right: 152px;
+  bottom: 0px;
+  right: 100px;
   z-index: 2;
 
   width: 300px;
   font-size: 1.1em;
   box-sizing: border-box;
-  background-color: black;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  
+  background: linear-gradient(to bottom, hsl(0, 0%, 10%), hsl(0, 0%, 15%), hsl(0, 0%, 10%));
+  
+  text-shadow: 1px 1px 5px hsl(0, 0%, 5%);
 }
 
 .global-player a {
   color: white;
+}
+
+.global-player .progress {
+  background-color: hsl(0, 0%, 35%);
 }
 
 .player-section {
@@ -85,7 +92,6 @@
 }
 
 .volume-controls {
-  float: right;
   width: 20px;
 }
 
@@ -95,7 +101,22 @@
 
 .track-info {
   width: 210px;
+  height: 105%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.75em;
+  padding-top: 2px;
 }
+
+.track-info span {
+  position: relative;
+  top: 2px;
+}
+
+.playback-controls a[disabled="true"] {
+  color: hsl(0, 0%, 50%);
+};
 
 .prev-track,
 .next-track {
@@ -104,10 +125,35 @@
 
 .global-player .progress {
   margin-bottom: 0px;
-  height: 5px;
+  height: 7px;
   border-radius: 0;
 }
 
 .global-player .info {
   padding: 5px;
+}
+
+.navbar {
+    background: linear-gradient(to bottom, hsl(0, 0%, 10%), hsl(0, 0%, 20%), hsl(0, 0%, 10%));
+    
+    text-shadow: 1px 1px 5px hsl(0, 0%, 5%);
+}
+
+.navbar-inverse .navbar-nav > li > a:active {
+  color: hsl(0, 0%, 90%);
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: hsl(0, 0%, 60%);
+}
+
+.navbar-header {
+  background: linear-gradient(to bottom, hsl(200, 60%, 60%), hsl(200, 60%, 40%));
+  text-shadow: none;
+  padding-left: 20px;
+}
+
+.navbar-inverse .navbar-brand {
+  color: white;
+  text-shadow: 0px 0px 2px hsl(0, 0%, 60%);
 }

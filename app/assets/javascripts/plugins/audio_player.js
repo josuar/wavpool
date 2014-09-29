@@ -1,7 +1,7 @@
 $.fn.audioPlayer = function () {
   if (this.length > 1) {
     return this.each(function() {
-      $(this).audioPlayer()
+      $(this).audioPlayer();
     });
   }
 
@@ -21,7 +21,24 @@ $.fn.audioPlayer = function () {
   var currentTrack = null;
   var queue = [];
 
-  remoteOptions = null;
+  var remoteOptions = null;
+  
+  var resetRemote = function () {
+    if (!remoteOptions) {
+      return;
+    }
+    
+    // remoteOptions.$progressBar
+    //   .children('.progress-bar')
+    //   .css("width", 0);
+      
+    remoteOptions.$playButton
+      .find('span')
+      .removeClass("glyphicon-pause")
+      .addClass("glyphicon-play");
+      
+    remoteOptions.reset();
+  };
 
   var setPlayButton = function ($el) {
     if (audio.paused) {
@@ -99,11 +116,27 @@ $.fn.audioPlayer = function () {
     audio.load();
     play();
   };
+  
+  var onProgressClick = function (event) {    
+    this.seek(event.offsetX, $progressBar.width());
+  }.bind(this);
+  
+  this.seek = function (x, seekWidth) {
+    if (!currentTrack) {
+      return;
+    }
+    
+    audio.currentTime = Math.floor(x * (audio.duration / seekWidth));
+  };
 
   this.bindRemote = function (options) {
     resetRemote();
-    
     remoteOptions = options;
+    
+    $audio.one("loadeddata", function () {
+      var x = remoteOptions.$progressBar.find('.progress-bar').width();     
+      this.seek(x, remoteOptions.$progressBar.width());
+    }.bind(this));
 
     updateProgressBar(remoteOptions.$progressBar);
     setPlayButton(remoteOptions.$playButton.find('span'));
@@ -141,6 +174,7 @@ $.fn.audioPlayer = function () {
     $audio.on("timeupdate", onTimeUpdate);
 
     $playToggle.on("click", onPlayToggle);
+    $progressBar.on("click", onProgressClick);
 
     return this;
   };
