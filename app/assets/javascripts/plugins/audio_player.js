@@ -29,10 +29,6 @@ $.fn.audioPlayer = function () {
     if (!remoteOptions) {
       return;
     }
-    
-    // remoteOptions.$progressBar
-    //   .children('.progress-bar')
-    //   .css("width", 0);
       
     remoteOptions.$playButton
       .find('span')
@@ -99,7 +95,7 @@ $.fn.audioPlayer = function () {
       
       var $commentBubble = $('<div>').
         addClass("progress-comment").
-        text(currentComment.comment.escape("content"));
+        text(currentComment.comment.get("content"));
         
       var offset = remoteOptions.$progressBar.children('.progress-bar').width();
       
@@ -108,8 +104,7 @@ $.fn.audioPlayer = function () {
       if (currentComment.comment.get("position") < 50) {
         $commentBubble.css("left", offset);
       } else {
-        console.log($commentBubble.width());
-        $commentBubble.css("left", offset - $commentBubble.width() - 15);
+        $commentBubble.css("left", offset - $commentBubble.width() - 20);
       }
       
       _.delay(function () {

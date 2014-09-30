@@ -46,6 +46,12 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
   
   addComment: function (comment) {
     this._addCommentLine(comment);
+    
+    // var subview = new WavPool.Views.CommentShow({
+    //   model: comment
+    // });
+    //
+    // this.addSubview('.comments', subview);
   },
   
   removeCommentForm: function () {
