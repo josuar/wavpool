@@ -7,6 +7,6 @@ WavPool.Collections.Comments = Backbone.Collection.extend({
   },
   
   comparator: function (comment) {
-    return comment.get("timestamp");
+    return comment.id;
   }
 });

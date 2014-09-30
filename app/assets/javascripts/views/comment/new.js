@@ -28,20 +28,18 @@ WavPool.Views.CommentNew = Backbone.View.extend({
     params.submission_id = this.collection.submission.id;
     
     var callbacks = {
-      success: function (submission) {
-        // WavPool.alerter.flashNow({
-        //   context: "success",
-        //   message: "Your comment was added."
-        // });
-        
+      success: function (comment) {        
         if (this.success) {
           this.success();
         }
         
+        comment._profile = WavPool.profile;
+        comment.trigger("sync");
+        
         this.$('input').val('');
       }.bind(this),
       
-      error: function (submission, response) {
+      error: function (comment, response) {
         WavPool.alerter.flashNow({
           context: "danger",
           message: response.responseJSON

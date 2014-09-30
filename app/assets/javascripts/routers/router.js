@@ -62,6 +62,7 @@ WavPool.Routers.Router = Backbone.SwappingRouter.extend({
     var view = new WavPool.Views.SubmissionShow({
       showProfile: true,
       showDescription: true,
+      showComments: true,
     	model: submission
     });
 

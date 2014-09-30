@@ -2,13 +2,19 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
 	template: JST["submission/show"],
 
 	initialize: function (options) {
-    this.showDescription = options.showDescription;
-    this.showProfile = options.showProfile;
+    this.showDescription = options.showDescription || false;
+    this.showProfile = options.showProfile || false;
+    this.showComments = options.showComments || false;
     
     this.invertedComments = {};
     
     this.listenTo(this.model, "sync change", this.render);   
-    this.listenTo(this.model.comments(), "add", this.addComment);
+    this.listenTo(this.model.comments(), "remove", this.removeComment);
+    
+    if (this.showComments) {
+      this.listenTo(this.model.comments(), "add", this.addComment);
+      this.model.comments().each(this.addComment.bind(this));
+    }
   },
   
   className: "submission",
@@ -44,14 +50,12 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
     }
   },
   
-  addComment: function (comment) {
-    this._addCommentLine(comment);
-    
-    // var subview = new WavPool.Views.CommentShow({
-    //   model: comment
-    // });
-    //
-    // this.addSubview('.comments', subview);
+  addComment: function (comment) {    
+    var subview = new WavPool.Views.CommentShow({
+      model: comment
+    });
+
+    this.addSubview('.comments', subview);
   },
   
   removeCommentForm: function () {
@@ -107,7 +111,10 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
       this.bound = true;
     }
     
-    this.model.comments().each(this.addComment.bind(this));
+    this.$('.comment-line').remove();
+    this.invertedComments = {};
+    
+    this.model.comments().each(this._addCommentLine.bind(this));
   },
   
   _addCommentLine: function (comment) {

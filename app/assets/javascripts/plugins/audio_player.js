@@ -13,33 +13,42 @@ $.fn.audioPlayer = function () {
 
   var $prevTrack = this.find('.prev-track');
   var $nextTrack = this.find('.next-track');
-
   var $trackTitle = this.find('.track-title');
-
+  
   var $progressBar = this.find('.progress');
 
   var currentTrack = null;
   var queue = [];
-
-  var remoteOptions = null;
-  
   var currentComment = null;
+
+  var remoteOptions = null;  
   
-  var animator = null;
+  // var animator = null;
   
   var resetRemote = function () {
     if (!remoteOptions) {
       return;
     }
       
+    resetPlayToggle();
+      
+    remoteOptions.reset();
+    
+    this.remoteOptions = null;
+  };
+  
+  var resetPlayToggle = function () {
     remoteOptions.$playButton
       .find('span')
       .removeClass("glyphicon-pause")
       .addClass("glyphicon-play");
-      
-    window.cancelAnimationFrame(animator);
-      
-    remoteOptions.reset();
+  };
+  
+  var onTrackEnded = function (event) {
+    $progressBar.children('.progress-bar').css("width", 0);
+    remoteOptions.$progressBar.children('.progress-bar').css("width", 0);
+    resetPlayToggle();
+    // resetRemote();
   };
 
   var setPlayButton = function ($el) {
@@ -173,7 +182,7 @@ $.fn.audioPlayer = function () {
     $audio.one("loadeddata", function () {
       var x = remoteOptions.$progressBar.find('.progress-bar').width();     
       this.seek(x, remoteOptions.$progressBar.width());
-      this.prepareAnalyzer();
+      //this.prepareAnalyzer();
     }.bind(this));
 
     updateProgressBar(remoteOptions.$progressBar);
@@ -295,6 +304,7 @@ $.fn.audioPlayer = function () {
     $audio.on("pause", onAudioPlayPause);
 
     $audio.on("timeupdate", onTimeUpdate);
+    $audio.on("ended", onTrackEnded);
 
     $playToggle.on("click", onPlayToggle);
     $progressBar.on("click", onProgressClick);

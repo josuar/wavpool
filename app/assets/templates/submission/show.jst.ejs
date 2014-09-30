@@ -22,7 +22,7 @@
       <time><small>uploaded <%= submission.timestamp() %></small></time>
     </h4>
 
-    <canvas class="analyzer"></canvas>
+    <!-- <canvas class="analyzer"></canvas> -->
     <div class="progress track-progress">
       <div class="progress-bar">
       </div>
@@ -46,8 +46,12 @@
     </a>
     
     <% if (showDescription) { %>
-      <p><%= submission.get("description") %></p>
+      <hr>
+      <p><h3><%= submission.get("description") %></h3></p>
+      <hr>
     <% } %>
+    
+    <div class="comments"></div>
   </div>
 </div>
 
