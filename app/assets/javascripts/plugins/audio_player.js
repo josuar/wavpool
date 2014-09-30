@@ -30,8 +30,7 @@ $.fn.audioPlayer = function () {
       return;
     }
       
-    resetPlayToggle();
-      
+    resetPlayToggle();    
     remoteOptions.reset();
     
     this.remoteOptions = null;
