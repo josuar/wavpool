@@ -25,6 +25,8 @@ $.fn.audioPlayer = function () {
   
   var currentComment = null;
   
+  var animator = null;
+  
   var resetRemote = function () {
     if (!remoteOptions) {
       return;
@@ -34,6 +36,8 @@ $.fn.audioPlayer = function () {
       .find('span')
       .removeClass("glyphicon-pause")
       .addClass("glyphicon-play");
+      
+    window.cancelAnimationFrame(animator);
       
     remoteOptions.reset();
   };
@@ -169,6 +173,7 @@ $.fn.audioPlayer = function () {
     $audio.one("loadeddata", function () {
       var x = remoteOptions.$progressBar.find('.progress-bar').width();     
       this.seek(x, remoteOptions.$progressBar.width());
+      this.prepareAnalyzer();
     }.bind(this));
 
     updateProgressBar(remoteOptions.$progressBar);
@@ -206,7 +211,7 @@ $.fn.audioPlayer = function () {
     }
     
     return audio.duration;
-  }
+  };
   
   this.timestamp = function () {
     if (!currentTrack) {
@@ -214,7 +219,76 @@ $.fn.audioPlayer = function () {
     }
     
     return Math.floor(audio.currentTime);
-  }
+  };
+  
+  this.prepareAnalyzer = function () {      
+    var $canvas = remoteOptions.$analyzer;
+    var canvas = $canvas.get(0);
+    
+    var audioContext = new webkitAudioContext();
+    var analyzer = audioContext.createAnalyser();
+    
+    analyzer.fftSize = 2048;
+    var bufferLength = analyzer.fftSize;
+    var buffer = new Uint8Array(bufferLength);
+    
+    var canvasContext = canvas.getContext('2d');
+    
+    audioContext.createMediaElementSource(audio).connect(analyzer);
+    analyzer.connect(audioContext.destination);
+    
+    _renderAnalyzer();
+    
+    function _renderAnalyzer() {
+      animator = window.requestAnimationFrame(_renderAnalyzer);
+      
+      //analyzer.getByteFrequencyData(buffer); 
+      analyzer.getByteTimeDomainData(buffer);
+    
+      canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+      canvasContext.fillStyle = '#00CCFF';
+      
+      canvasContext.lineWidth = 4;
+      canvasContext.strokeStyle = "#00CCFF";
+      canvasContext.beginPath();
+
+      var sliceWidth = canvas.width * 1.0 / bufferLength;
+      var x = 0;
+
+      for (var i = 0; i < bufferLength; ++i) {
+        var v = buffer[i] / 128.0;
+        var y = v * canvas.height / 2;
+
+        if (i === 0) {
+          canvasContext.moveTo(x, y);
+        } else {
+          canvasContext.lineTo(x, y);
+        }
+
+        x += sliceWidth;
+      }
+
+      canvasContext.lineTo(canvas.width, canvas.height / 2);
+      canvasContext.stroke();
+      
+      // bars = canvas.width / 3;
+      //
+      // for (var i = 0; i < bars; ++i) {
+      //   var x = i * 3;
+      //
+      //   if (x < remoteOptions.$progressBar.children('.progress-bar').width()) {
+      //     canvasContext.fillStyle = '#22CCFF';
+      //   } else {
+      //     canvasContext.fillStyle = '#00CCFF';
+      //   }
+      //
+      //   var width = 2;
+      //   var height = -(buffer[i] / 4);
+      //
+      //   canvasContext.fillRect(x, canvas.height, width, height);
+      // }
+    };
+  };
 
   this.initialize = function () {
     $audio.on("play", onAudioPlayPause);

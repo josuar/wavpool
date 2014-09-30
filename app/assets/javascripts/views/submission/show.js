@@ -74,7 +74,8 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
     WavPool.player.bindRemote({
       $progressBar: this.$('.progress'),
       $playButton: this.$('.play-button'),
-      comments: this.invertedComments,
+      $analyzer: this.$('.analyzer'), 
+      comments: this.invertedComments, 
       reset: function () {
         this.bound = false;
         this.removeCommentForm();
