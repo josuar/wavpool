@@ -1,3 +1,6 @@
+<%  if (showDescription) { %>
+  <div class="col-xs-10 col-xs-offset-1">
+<% } %>
 <div class="media">
   <div class="image-container pull-left media-object text-center">
     <img src="<%= WavPool.s3Url(submission.escape("image_url")) %>" class="track-image" />
@@ -33,13 +36,22 @@
     <% if (submission.isOwnedByCurrentUser()) { %>
     <a class="btn btn-default btn-xs" href="#/submissions/<%= submission.id %>/edit">
       <span class="glyphicon glyphicon-pencil"></span>
+     <%  if (showDescription) { %>
+       Edit
+     <% } %>
     </a>
     <% } %>
     <a class="btn btn-default btn-xs" href="<%= submission.getShareUrl() %>">
       <span class="glyphicon glyphicon-share"></span>
+      <%  if (showDescription) { %>
+        Share
+      <% } %>
     </a>
     <a class="btn btn-default btn-xs" href="<%= WavPool.s3Url(submission.escape('remote_url')) %>">
       <span class="glyphicon glyphicon-download"></span>
+      <%  if (showDescription) { %>
+        Download
+      <% } %>
     </a>
     <a class="btn btn-default btn-xs like-button" href="#">
       <span class="glyphicon glyphicon-heart"></span>
@@ -47,7 +59,7 @@
     
     <% if (showDescription) { %>
       <hr>
-      <p><h3><%= submission.get("description") %></h3></p>
+      <p><h4><%= submission.get("description") %></h4></p>
       <hr>
     <% } %>
     
@@ -55,4 +67,8 @@
   </div>
 </div>
 
+<%  if (showDescription) { %>
+</div>
+<% } else { %>
 <hr>
+<% } %>

@@ -6,11 +6,22 @@ class Api::LikesController < ApplicationController
   end
 
   def destroy
-    like = current_user.out_likes.find_by_liker_id(current_user.id)
+    like = current_submission.likes.find_by_liker_id(current_user.id)
     
     like.destroy
     
     render json: []
+  end
+  
+  def index
+    user = Profile.find(params[:profile_id]).user
+    
+    if user
+      @likes = user.likes
+      render :index
+    else
+      render json: [], status: :unprocessable_entity
+    end   
   end
 
   private
