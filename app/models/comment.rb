@@ -5,10 +5,11 @@
 #  id              :integer          not null, primary key
 #  user_id         :integer          not null
 #  submission_id   :integer          not null
-#  track_timestamp :integer
+#  track_timestamp :integer          default(0)
 #  content         :text             not null
 #  created_at      :datetime
 #  updated_at      :datetime
+#  track_position  :integer          default(0)
 #
 
 class Comment < ActiveRecord::Base

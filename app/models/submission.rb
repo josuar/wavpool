@@ -10,6 +10,7 @@
 #  user_id     :integer          not null
 #  created_at  :datetime
 #  updated_at  :datetime
+#  likes_count :integer
 #
 
 class Submission < ActiveRecord::Base
@@ -25,8 +26,10 @@ class Submission < ActiveRecord::Base
   before_destroy :delete_resources
   
   belongs_to :user
+  has_one :submitter, through: :user, source: :profile
 
   has_many :likes, foreign_key: :likee_id
+  has_many :likers, through: :likes, source: :liker
   
   has_many :comments
 

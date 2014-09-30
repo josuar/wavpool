@@ -15,10 +15,6 @@
 <div class="alerts container">
 </div>
 
-<div class="global-player">
-  <%= render partial: 'layouts/audio_player' %>
-</div>
-
 <main class="container">
   <%= yield %>
 </main>
@@ -26,7 +22,7 @@
 <script>
 $(function () {
   WavPool.initialize({
-    profileId: <%= current_user.profile.id rescue 0 %>,
+    userId: <%= current_user.id rescue 0 %>,
     s3Bucket: "<%= S3_BUCKET.url %>"
   });
 });

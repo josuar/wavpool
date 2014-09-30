@@ -1,0 +1,15 @@
+<div class="info">
+  <time class="submitted pull-right"><%= submission.submitted() %></time>
+  
+  <div class="submitter-name">
+    <%= submission.submitter().escape("display_name") %>
+  </div>
+
+  <div class="play-button pull-left">
+    <span class="glyphicon glyphicon-play"></span>
+  </div>
+
+  <div class="title">
+    <%= submission.escape("title") %>
+  </div>
+</div>

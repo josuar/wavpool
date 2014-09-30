@@ -1,5 +1,7 @@
 class Api::UsersController < ApplicationController  
+  before_action :require_authenticated!, only: :show
+  
   def show
-    render json: current_user, only: [:email_address, :created_at]
+    @user = current_user
   end
 end

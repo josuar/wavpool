@@ -1,0 +1,47 @@
+<div class="controls pull-left">
+  <% if (submission.submitter().isCurrentUser()) { %>
+    <a class="btn btn-default btn-xs"
+      href="#/submissions/<%= submission.id %>/edit">
+      <span class="glyphicon glyphicon-pencil"></span>
+      <% if (buttonText) { %>
+        Edit
+      <% } %>
+    </a>
+  <% } %>
+  
+  <a class="btn btn-default btn-xs" href="#">
+    <span class="glyphicon glyphicon-share"></span>
+    <% if (buttonText) { %>
+      Share
+    <% } %>
+  </a>
+  
+  <a class="btn btn-default btn-xs"
+    href="<%= submission.submissionUrl() %>">
+    <span class="glyphicon glyphicon-download"></span>
+    <% if (buttonText) { %>
+      Download
+    <% } %>
+  </a>
+  
+  <a class="btn btn-default btn-xs like-button" href="#">
+    <span class="glyphicon glyphicon-heart"></span>
+    <% if (buttonText) { %>
+      Like
+    <% } %>
+  </a>
+</div>
+
+<span class="stats pull-right">
+  <span class="plays">
+    <span class="glyphicon glyphicon-play"></span>
+    0
+  </span>
+  
+  |
+  
+  <span class="likes">
+    <span class="glyphicon glyphicon-heart"></span>
+    <%= submission.escape("likes") %>
+  </span>
+</span>

@@ -1,24 +1,19 @@
-json.id submission.id
-json.title submission.title
-json.description submission.description
+# Base attributes
+json.(submission, :id, :title, :description, :remote_url, :image_url)
+
+json.submitted time_ago_in_words(submission.created_at)
+
+# Likes
+json.likes submission.likes.size
 
 if signed_in?
   json.liked current_user.likes?(submission)
 end
 
-json.likes submission.likes.size
+# Profile
+json.submitter submission.submitter, :id, :display_name, :picture_url
 
+# Comments
 json.comments submission.comments do |comment|
   json.partial! 'api/comments/comment', comment: comment
-end
-
-json.remote_url submission.remote_url
-json.image_url submission.image_url
-
-json.timestamp time_ago_in_words(submission.created_at)
-json.created_at submission.created_at
-
-json.profile do
-  json.id submission.user.profile.id
-  json.name submission.user.profile.display_name
 end
