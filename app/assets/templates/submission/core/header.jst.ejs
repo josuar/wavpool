@@ -1,13 +1,19 @@
 <div class="info">
   <div class="top">
     <time class="submitted pull-right">
-      <h3><small><%= submission.escape('submitted') %></small></h3>
+      <h3><small>
+        <%= submission.escape('submitted') %>
+      </small></h3>
     </time>
     
     <div class="submitter-name">
       <span class="display-name">
         <h3>
-          <small><%= submission.submitter().escape("display_name") %></small>
+          <small>
+            <a href="<%= submission.submitter().link() %>">
+              <%= submission.submitter().escape("display_name") %>
+            </a>
+          </small>
         </h3>
       </span> 
     </div>
@@ -19,7 +25,9 @@
     </div>
 
     <div class="title">
-      <%= submission.escape("title") %>
+      <a href="<%= submission.link() %>">
+        <%= submission.escape("title") %>
+      </a>
     </div>
   </h2>
 </div>

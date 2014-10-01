@@ -1,5 +1,5 @@
 WavPool.Models.Submission = Backbone.Model.extend({
-  urlRoot: '/api/submissions',
+  urlRoot: '/api/submissions/',
   
   submitter: function () {
     this._submitter = this._submitter || new WavPool.Models.Profile();
@@ -36,7 +36,7 @@ WavPool.Models.Submission = Backbone.Model.extend({
     return WavPool.s3Url(this.escape("remote_url"));
   },
   
-  permalink: function () {
+  link: function () {
     return this.urlRoot + this.id;
   }
 });

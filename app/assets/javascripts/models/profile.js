@@ -25,7 +25,7 @@ WavPool.Models.Profile = Backbone.Model.extend({
     return WavPool.s3Url(this.escape("picture_url"));
   },
   
-  permalink: function () {
+  link: function () {
     return this.urlRoot + this.id;
   }
 });
