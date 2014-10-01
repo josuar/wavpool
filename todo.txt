@@ -1,2 +1,0 @@
-- delete profile pic when new one is set
-- bindUploads -> bindUpload

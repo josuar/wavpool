@@ -1,17 +1,17 @@
 <div class="info">
-  <time class="submitted pull-right">
-    <h3><small><%= submission.escape('submitted') %></small></h4>
-  </time>
-  
-  <div class="submitter-name pull-left">
-    <span class="display-name">
-      <h3>
-        <small><%= submission.submitter().escape("display_name") %></small>
-      </h3>
-    </span> 
+  <div class="top">
+    <time class="submitted pull-right">
+      <h3><small><%= submission.escape('submitted') %></small></h3>
+    </time>
+    
+    <div class="submitter-name">
+      <span class="display-name">
+        <h3>
+          <small><%= submission.submitter().escape("display_name") %></small>
+        </h3>
+      </span> 
+    </div>
   </div>
-  
-  <div class="clearfix"></div>
 
   <h2>
     <div class="play-button pull-left">

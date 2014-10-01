@@ -1,9 +1,63 @@
-<div class="col-xs-2 info">
+<div class="col-xs-3 info">
+  <h2><%= profile.escape("display_name") %></h2>
+
+  <a href="#" class="picture-swappable">
+    <img src="<%= profile.pictureUrl() %>" class="profile-picture" />
+  </a>
+
+  <div class="essential">
+    <h3>
+      <small>
+        <span class="full-name"><%= profile.escape("full_name") %></span> <br>
+        <span class="location"><%= profile.escape("location") %></span>
+      </small>
+    </h3>
+  </div>
+
+  <div class="stats">
+    <h4>
+      <span class="follower-count">
+        <span class="glyphicon glyphicon-user"></span>
+        <%= profile.escape("followed_count") %>
+      </span>
+      
+      |
+      
+      <span class="submission-count">
+        <span class="glyphicon glyphicon-upload"></span>
+        <%= profile.escape("submission_count") %>
+      </span>
+    </h4>
+  </div>
+
+  <div class="controls">
+    <% if (profile.isCurrentUser()) { %>
+      <a class="btn btn-default btn-sm context-button"
+          href="profile/edit">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="button-text">Edit</span>
+      </a>
+    <% } %>
+
+    <a class="btn btn-default btn-sm" href="#">
+      <span class="glyphicon glyphicon-share"></span>
+      <span class="button-text">Share</span>
+    </a> 
+  </div>
+
+  <br>
+
+  <p class="description">
+    <small>
+      <%= profile.escape("description") %>
+    </small>
+  </p>
+</div>
+
+<div class="col-xs-6 submissions">
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </div>
-<div class="col-xs-7 submissions">
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</div>
+
 <div class="col-xs-3 stats">
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </div>

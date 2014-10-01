@@ -48,6 +48,10 @@ main {
   margin-right: 10px;
 }
 
+.profile-full {
+  margin-top: 25px;
+}
+
 .submission-full .cover-art img {
   width: 200px;
   height: 200px;
@@ -61,8 +65,68 @@ main {
   margin-bottom: 0px;
 }
 
+.submissions .play-button {
+  margin-top: -15px;
+}
+
+.submissions h2 {
+  margin: 0;
+}
+
+.submissions .display-name h3 {
+  margin: 0;
+  font-size: 16pt;
+
+  margin-left: 36px;
+}
+
+.submissions time h3 {
+  margin: 0;
+  font-size: 14pt;
+}
+
+.submitted h3 {
+  margin: 0;
+}
+
+.info .top {
+  margin-bottom: 7px;
+}
+
+.submissions .info .top {
+  margin-bottom: 0;
+  position: relative;
+}
+
+.submissions time {
+  margin: 0;
+}
+
+.submissions h2 .title {
+  font-size: 12pt !important;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .submission-full .info h2 {
   margin-top: -5px;
+}
+
+.submissions .button-text {
+  display: none;
+}
+
+.submissions .btn-sm {
+  padding: 1px 5px !important;
+  margin-top: -2px;
+}
+
+.submissions hr {
+  margin-top: 15px;
+}
+
+.submissions .stats h4 {
+  font-size: 11pt;
 }
 
 .play-button {
@@ -86,15 +150,15 @@ main {
   border: 2px solid hsl(200, 75%, 70%);
 }
 
-.submission-small .core .context-button {
+.submissions .core .context-button {
   display: none;
 }
 
-.submission-small .core:hover .context-button {
+.submissions .core:hover .context-button {
   display: inline-block;
 }
 
-.submission-full .play-button span {
+.play-button span {
   font-size: 17px;
   color: white;
   text-shadow: 0 0 3px rgba(255, 255, 255, 1);
@@ -129,6 +193,12 @@ main {
 .footer {
   margin-top: 15px;
 }
+
+.profile-picture {
+  width: 200px;
+  height: 200px;
+}
+
 
 
 

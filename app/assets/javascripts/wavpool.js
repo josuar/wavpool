@@ -16,6 +16,9 @@ window.WavPool = {
     
     this.s3Bucket = options.s3Bucket;
     
+    this.alerter = $('.alerts').alerter();
+    this.player = $('.global-player').audioPlayer();
+    
     if (!this.user) {
       this._start();
     } 
@@ -29,7 +32,12 @@ window.WavPool = {
     return this.s3Bucket + url;
   },
   
-  pageNotFound: function () {        
+  pageNotFound: function () {   
+    this.alerter.flash({
+      context: "danger",
+      message: "An error occurred loading the page."
+    });
+
     Backbone.history.navigate('/', {
       trigger: true,
       replace: true
@@ -40,6 +48,10 @@ window.WavPool = {
     var router = new WavPool.Routers.Router({
       $rootEl: $('main')
     });
+
+    router.on('route', function () {
+      this.alerter.renderDeferred();
+    }.bind(this));
     
     Backbone.history.start();
   }

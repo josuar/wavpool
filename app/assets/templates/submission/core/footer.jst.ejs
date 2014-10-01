@@ -1,33 +1,25 @@
 <div class="controls pull-left">
   <a class="btn btn-default btn-sm like-button" href="#">
     <span class="glyphicon glyphicon-heart"></span>
-    <% if (buttonText) { %>
-      Like
-    <% } %>
+    <span class="button-text">Like</span>
   </a>
   
   <a class="btn btn-default btn-sm" href="#">
     <span class="glyphicon glyphicon-share"></span>
-    <% if (buttonText) { %>
-      Share
-    <% } %>
+    <span class="button-text">Share</span>
   </a>
   
   <a class="btn btn-default btn-sm"
     href="<%= submission.submissionUrl() %>">
     <span class="glyphicon glyphicon-download"></span>
-    <% if (buttonText) { %>
-      Download
-    <% } %>
+    <span class="button-text">Download</span>
   </a>
   
   <% if (submission.submitter().isCurrentUser()) { %>
     <a class="btn btn-default btn-sm context-button"
       href="#/submissions/<%= submission.id %>/edit">
       <span class="glyphicon glyphicon-pencil"></span>
-      <% if (buttonText) { %>
-        Edit
-      <% } %>
+      <span class="button-text">Edit</span>
     </a>
   <% } %>
 </div>
