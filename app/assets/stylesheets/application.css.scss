@@ -28,13 +28,18 @@ main {
   background-color: white;
   height: 100%;
   
-  padding-left: 50px !important;
-  padding-right: 50px !important;
+  padding-left: 25px !important;
+  padding-right: 25px !important;
 }
 
 .dropdown-form-container {
   width: 350px;
   padding: 15px 15px 0px 15px;
+}
+
+.navbar {
+  padding-left: 80px !important;
+  padding-right: 80px !important;
 }
 
 .display-pic {
