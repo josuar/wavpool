@@ -3,7 +3,7 @@ WavPool.Views.ProfileMini = Backbone.View.extend({
   className: 'profile-mini',
   
   initialize: function () {
-    this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.model, "sync change", this.render);
   },
   
   render: function () {

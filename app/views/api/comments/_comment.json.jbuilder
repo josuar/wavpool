@@ -1,4 +1,4 @@
-json.(comment, :content, :track_position)
+json.(comment, :content, :track_timestamp)
 
 json.profile do
   json.id comment.user.profile.id

@@ -3,16 +3,18 @@ WavPool.Views.SubmissionCoreHeader = Backbone.View.extend({
   className: 'header',
   
   initialize: function () {
-    this.listenTo(this.model, "change:title", this.render);
-    this.listenTo(this.model.submitter(), "change:display_name", this.render);
+    this.listenTo(this.model, "change:title change:display_name", this.render);
   },
   
   render: function () {
+    console.log ("    header rendering")
     var rendered = this.template({
       submission: this.model
     });
     
     this.$el.html(rendered);
+    
+    console.log("    header rendered")
     
     return this;
   }

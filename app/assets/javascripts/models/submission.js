@@ -36,7 +36,11 @@ WavPool.Models.Submission = Backbone.Model.extend({
     return WavPool.s3Url(this.escape("remote_url"));
   },
   
-  link: function () {
-    return this.urlRoot + this.id;
+  showLink: function () {
+    return "/#/submissions/" + this.id;
+  },
+  
+  editLink: function () {
+    return "/#/submission/" + this.id + "/edit";
   }
 });

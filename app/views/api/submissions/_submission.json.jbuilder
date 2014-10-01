@@ -1,5 +1,5 @@
 # Base attributes
-json.(submission, :id, :title, :description, :remote_url, :image_url)
+json.(submission, :id, :title, :description, :remote_url, :image_url, :duration)
 
 json.submitted time_ago_in_words(submission.created_at)
 

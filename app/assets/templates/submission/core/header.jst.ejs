@@ -10,7 +10,7 @@
       <span class="display-name">
         <h3>
           <small>
-            <a href="<%= submission.submitter().link() %>">
+            <a href="<%= submission.submitter().showLink() %>">
               <%= submission.submitter().escape("display_name") %>
             </a>
           </small>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="title">
-      <a href="<%= submission.link() %>">
+      <a href="<%= submission.showLink() %>">
         <%= submission.escape("title") %>
       </a>
     </div>

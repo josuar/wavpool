@@ -19,6 +19,8 @@ $.fn.audioPlayer = function () {
 
   var currentTrack = null;
   var queue = [];
+  
+  var comments = [];
   var currentComment = null;
 
   var remoteOptions = null;  
@@ -82,7 +84,6 @@ $.fn.audioPlayer = function () {
   var updateProgressBar = function ($bar) {
     var maxWidth = $bar.width();
     var newWidth = Math.floor((audio.currentTime / audio.duration) * maxWidth);
-
     $bar.children('.progress-bar').css("width", newWidth);
   };
 
@@ -103,7 +104,7 @@ $.fn.audioPlayer = function () {
     var comment = remoteOptions.comments[Math.floor(audio.currentTime)];
     
     if (comment) {
-      currentComment = comment[0];
+      currentComment = comment;
       currentComment.line.addClass("active");
       
       var $commentBubble = $('<div>').
@@ -114,10 +115,10 @@ $.fn.audioPlayer = function () {
       
       remoteOptions.$progressBar.prepend($commentBubble);
         
-      if (currentComment.comment.get("position") < 50) {
+      if (currentComment.comment.get("track_timestamp") < audio.duration / 2) {
         $commentBubble.css("left", offset);
       } else {
-        $commentBubble.css("left", offset - $commentBubble.width() - 20);
+        $commentBubble.css("left", offset - $commentBubble.width() - 15);
       }
       
       _.delay(function () {
@@ -178,6 +179,7 @@ $.fn.audioPlayer = function () {
   this.bindRemote = function (options) {
     resetRemote();
     remoteOptions = options;
+    console.log("set remote options")
     
     $audio.one("loadeddata", function () {
       var x = remoteOptions.$progressBar.find('.progress-bar').width();     

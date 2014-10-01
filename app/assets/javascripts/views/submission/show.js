@@ -9,12 +9,15 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
   },
   
   render: function () {
+    console.log("show rendering")
     var rendered = this.template({
       submission: this.model
     });
     
     this.$el.html(rendered);
     this.attachSubviews(); 
+    
+    console.log("show rendered")
     
     return this;
   },

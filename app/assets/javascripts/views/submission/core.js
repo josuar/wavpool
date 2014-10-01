@@ -3,9 +3,9 @@ WavPool.Views.SubmissionCore = Backbone.CompositeView.extend({
   className: 'core',
   
   initialize: function () {
-    this.listenTo(this.model, "sync", this.render);
-
-    this.invertedComments = {};
+    //this.listenTo(this.model, "sync", this.render);
+    
+    this.barComments = {};
     
     this._construct();
   },
@@ -16,12 +16,15 @@ WavPool.Views.SubmissionCore = Backbone.CompositeView.extend({
   },
   
   render: function () {
+    console.log("  core rendering")
     var rendered = this.template({
       submission: this.model
     });
     
     this.$el.html(rendered);
     this.attachSubviews();
+    
+    console.log("  core rendered")
     
     return this;
   },
@@ -53,6 +56,7 @@ WavPool.Views.SubmissionCore = Backbone.CompositeView.extend({
   },
   
   onAfterRender: function () {
+    console.log("on after")
     this.$('.like-button').toggleButton({      
       onAction: "Like",
       offAction: "Unlike",
@@ -73,22 +77,64 @@ WavPool.Views.SubmissionCore = Backbone.CompositeView.extend({
       this._bindRemote();
       this.bound = true;
     }
+    
+    this.model.comments().each(this._addComment.bind(this));
+  },
+
+  _addComment: function (comment) {
+    var timestamp = comment.get("track_timestamp");
+    var duration = this.model.get("duration") || -1;
+    
+    var $bar = this.$('.progress');
+    
+    var place = timestamp / duration;
+    var left = $bar.width() * place;
+    
+    var $line = $('<div>').addClass("comment-line").css("left", left);   
+    $bar.append($line);
+    
+    this.barComments[timestamp] = {
+      comment: comment,
+      line: $line
+    };
   },
 
   _bindRemote: function() {
+    console.log("  core binding remote")
     WavPool.player.bindRemote({
       $progressBar: this.$('.progress'),
       $playButton: this.$('.play-button'),
-
-      comments: this.invertedComments, 
+      
+      comments: this.barComments,
       
       reset: function () {
         this.bound = false;
-        //this.removeCommentForm();
+        this._removeCommentForm();
       }.bind(this)
     });
     
-    //this.addCommentForm();
+    this._addCommentForm();
+  },
+  
+  _addCommentForm: function () {
+    this.addSubview(
+      '.new-comment-container',
+      new WavPool.Views.CommentNew({
+        model: new WavPool.Models.Comment(),
+        collection: this.model.comments(),
+        
+        success: function (comment) {
+          this._addComment(comment);
+        }.bind(this)
+      })
+    );
+  },
+  
+  _removeCommentForm: function () {
+    this.removeSubview(
+      ".new-comment-container",
+      this.subviews(".new-comment-container")[0]
+    );
   },
   
   _construct: function () {    

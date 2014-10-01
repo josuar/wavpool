@@ -31,7 +31,7 @@ class Api::SubmissionsController < ApplicationController
 
   def submission_params
     params.require(:submission).permit(
-      :title, :description, :remote_url, :image_url
+      :title, :description, :remote_url, :image_url, :duration
     )
   end
 end
