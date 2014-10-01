@@ -12,7 +12,7 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
   },
 
   addSubmission: function (submission) {
-    var view = new WavPool.Views.SubmissionCore({
+    var view = new WavPool.Views.SubmissionInline({
       model: submission
     });
 
@@ -25,6 +25,30 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
     });
     
     this.removeSubview(".submissions", subview);
+  },
+  
+  onAfterRender: function () {
+    this.$('.follow-button').toggleButton({      
+      onAction: "Follow",
+      offAction: "Unfollow",
+      
+      on: this.model.get("followed"),
+      
+      onIcon: "plus",
+      offIcon: "minus",
+      
+      actionUrl: "api/profiles/" + this.model.id + "/follow",
+
+      onOn: function () {
+        followers = this.$(".followed-count");
+        followers.text(parseInt(followers.text(), 10) + 1);
+      }.bind(this),
+
+      onOff: function () {
+        followers = this.$(".followed-count");
+        followers.text(parseInt(followers.text(), 10) - 1);
+      }.bind(this)
+    });
   },
   
   render: function () {

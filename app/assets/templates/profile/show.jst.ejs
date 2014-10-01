@@ -31,18 +31,26 @@
   </div>
 
   <div class="controls">
-    <% if (profile.isCurrentUser()) { %>
-      <a class="btn btn-default btn-sm context-button"
-          href="profile/edit">
-        <span class="glyphicon glyphicon-pencil"></span>
-        <span class="button-text">Edit</span>
-      </a>
+    <% if (!profile.isCurrentUser()) { %>
+      <div class="form-group">
+        <a class="btn btn-primary btn-sm follow-button"></a>
+      </div>
     <% } %>
+    
+    <div class="form-group">
+      <% if (profile.isCurrentUser()) { %>
+        <a class="btn btn-default btn-sm context-button"
+            href="<%= profile.editLink() %>">
+          <span class="glyphicon glyphicon-pencil"></span>
+          <span class="button-text">Edit</span>
+        </a>
+      <% } %>
 
-    <a class="btn btn-default btn-sm" href="#">
-      <span class="glyphicon glyphicon-share"></span>
-      <span class="button-text">Share</span>
-    </a> 
+      <a class="btn btn-default btn-sm" href="#">
+        <span class="glyphicon glyphicon-share"></span>
+        <span class="button-text">Share</span>
+      </a> 
+    </div>
   </div>
 
   <br>
@@ -55,7 +63,6 @@
 </div>
 
 <div class="col-xs-6 submissions">
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </div>
 
 <div class="col-xs-3 stats">

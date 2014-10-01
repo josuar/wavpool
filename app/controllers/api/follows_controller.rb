@@ -18,7 +18,7 @@ class Api::FollowsController < ApplicationController
   private
   
   def this_user
-    @this_user ||= User.find(params[:profile_id])
+    @this_user ||= Profile.find(params[:profile_id]).user
   end
   
   def prevent_user_following_self

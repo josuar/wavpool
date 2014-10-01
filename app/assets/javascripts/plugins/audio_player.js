@@ -242,9 +242,8 @@ $.fn.audioPlayer = function () {
   };
   
   this.prepareAnalyzer = function () {          
-    audioContext = new webkitAudioContext();
-    
     if (!analyzing) {
+      audioContext = new webkitAudioContext();
       analyzer = audioContext.createAnalyser();
     }
 

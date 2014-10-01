@@ -24,7 +24,9 @@ body {
   padding: 50px 25px 0px 25px;
 }
 
-main {
+.all-content {
+  padding-top: 25px;
+  
   background-color: white;
   height: 100%;
   
@@ -46,10 +48,6 @@ main {
   width: 50px;
   height: 50px;
   margin-right: 10px;
-}
-
-.profile-full {
-  margin-top: 25px;
 }
 
 .submission-full .cover-art img {
@@ -237,10 +235,14 @@ main {
   width: 120px;
 }
 
+.player-container {
+  float: right;
+  width: 300px;
+}
+
 .global-player {
   position: fixed;
   bottom: 0px;
-  right: 100px;
   z-index: 2;
 
   width: 300px;
@@ -308,6 +310,16 @@ main {
 
 .global-player .progress-bar {
   background-color: hsl(200, 70%, 70%);
+}
+
+.submission-inline .cover-art img {
+  width: 80px;
+  height: 80px;
+}
+
+.feed .submission-inline .cover-art img {
+  width: 120px;
+  height: 120px;
 }
 
 .global-player .info {
@@ -385,6 +397,7 @@ main {
   
   padding: 5px;
   max-width: 200px;
+  margin-left: 1px;
   
   z-index: 3;
   

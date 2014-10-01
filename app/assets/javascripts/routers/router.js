@@ -3,13 +3,13 @@ WavPool.Routers.Router = Backbone.Router.extend({
     "" : "root",
     
     "profiles/:id" : "profileShow",
-    // "profile/edit" : "profileEdit",
-    //
-    // "submissions/new" : "submissionNew",
+    "profile/edit" : "profileEdit",
+
+    "submissions/new" : "submissionNew",
     "submissions/:id" : "submissionShow",
-    // "submissions/:id/edit" : "submissionEdit",
-    //
-    // "feed" : "feedShow",
+    "submissions/:id/edit" : "submissionEdit",
+
+    "feed" : "feedShow",
     // "surf" : "surfShow"
   },
   
@@ -19,9 +19,9 @@ WavPool.Routers.Router = Backbone.Router.extend({
   
   root: function () {
     if (WavPool.user) {
-      feedShow();
+      this.feedShow();
     } else {
-      surfShow();
+      this.surfShow();
     }
   },
   
@@ -36,11 +36,41 @@ WavPool.Routers.Router = Backbone.Router.extend({
   },
   
   profileEdit: function () {
+    if (!WavPool.user) {
+      WavPool.alerter.flash({
+        context: "warning",
+        message: "You must be signed in to do that."
+      });
+      
+      return;
+    }
     
+    var profile = WavPool.user.profile();
+    profile.fetch();
+    
+    var view = new WavPool.Views.ProfileEdit({
+      model: profile
+    });
+    
+    this.swapView(view);
   },
   
   submissionNew: function () {
+    if (!WavPool.user) {
+      WavPool.alerter.flash({
+        context: "warning",
+        message: "You must be signed in to do that."
+      });
+      
+      return;
+    }
     
+    var view = new WavPool.Views.SubmissionForm({
+      model: new WavPool.Models.Submission(),
+      collection: WavPool.user.profile().submissions()
+    });
+
+    this.swapView(view);
   },
   
   submissionShow: function (id) {
@@ -54,11 +84,41 @@ WavPool.Routers.Router = Backbone.Router.extend({
   },
   
   submissionEdit: function (id) {
+    if (!WavPool.user) {
+      WavPool.alerter.flash({
+        context: "warning",
+        message: "You must be signed in to do that."
+      });
+      
+      return;
+    }
     
+    var submission = WavPool.submissions.getOrFetch(id);
+
+    var view = new WavPool.Views.SubmissionForm({
+    	model: submission
+    });
+
+    this.swapView(view);
   },
   
   feedShow: function () {
+    if (!WavPool.user) {
+      WavPool.alerter.flash({
+        context: "warning",
+        message: "You must be signed in to do that."
+      });
+      
+      return;
+    }
+
+    WavPool.feed.fetch();
     
+    var view = new WavPool.Views.FeedShow({
+      model: WavPool.feed
+    });
+    
+    this.swapView(view);
   },
   
   surfShow: function () {

@@ -12,16 +12,20 @@
   <%= render partial: 'layouts/navbar' %>
 </header>
 
-<div class="alerts container">
-</div>
+<div class="all-content">
+  <div class="alerts container">
+  </div>
 
-<div class="global-player">
-  <%= render partial: 'layouts/audio_player' %>
+  <div class="player-container">
+    <div class="global-player">
+      <%= render partial: 'layouts/audio_player' %>
+    </div>
+  </div>
+  
+  <main class="container">
+    <%= yield %>
+  </main>
 </div>
-
-<main class="container">
-  <%= yield %>
-</main>
 
 <script>
 $(function () {
