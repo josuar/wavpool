@@ -104,7 +104,6 @@ main {
 
 .submissions h2 .title {
   font-size: 12pt !important;
-  font-weight: bold;
   margin-bottom: 10px;
 }
 
@@ -245,7 +244,9 @@ main {
   z-index: 2;
 
   width: 300px;
+  
   font-size: 1.1em;
+  
   box-sizing: border-box;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -305,6 +306,10 @@ main {
   border-radius: 0;
 }
 
+.global-player .progress-bar {
+  background-color: hsl(200, 70%, 70%);
+}
+
 .global-player .info {
   padding: 5px;
 }
@@ -338,39 +343,59 @@ main {
 //  transition: none;
 //}
 
+.track-progress-bar {
+  height: 7px;
+  
+  background-color: hsl(200, 70%, 70%) !important;
+  
+  position: absolute;
+  bottom: 0;
+}
+
 .track-progress {
   position: relative;
 }
 
 .track-progress .comment-line {
   position: absolute;
-  top: 0;
-  margin-top: 1px;
+  bottom: 0px;
   
   background-color: hsl(0, 0%, 80%);
-  width: 2px;
-  height: 100%;
+  width: 1px;
+  height: 7px;
 }
 
 .track-progress .comment-line.active {
-  background-color: hsl(20, 70%, 60%);
+  background-color: hsl(20, 100%, 80%);
+}
+
+.progress-bar {
+  transition: none;
 }
 
 .progress-comment {
   position: absolute;
-  top: 8px;
-  font-size: 0.725em;
-  background: linear-gradient(to bottom, hsl(0, 0%, 97%), hsl(0, 0%, 95%));
-  border-radius: 0 10px 0 10px;
+  bottom: 7px;
+  
+  background: linear-gradient(to bottom, hsl(0, 0%, 99%), hsl(0, 0%, 97%));
+  
+  border: 1px solid hsl(20, 100%, 80%);
+  border-radius: 10px 0 10px 0;
+  box-shadow: 3px 3px 5px hsla(0, 0%, 30%, 0.10);
+  
   padding: 5px;
-  box-shadow: 3px 3px 5px hsla(0, 0%, 30%, 0.15);
-  margin-left: 3px;
-  border: 1px solid hsl(0, 0, 90%);
   max-width: 200px;
+  
+  z-index: 3;
+  
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  z-index: 3;
+}
+
+.submissions .progress-comment {
+  font-size: 0.725em;
+  margin-left: -1px;
 }
 
 /*.submission-comment {

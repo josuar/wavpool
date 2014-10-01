@@ -10,15 +10,12 @@ WavPool.Views.SubmissionCoreFooter = Backbone.View.extend({
   },
   
   render: function () {
-    console.log("    footer rendering")
     var rendered = this.template({
       submission: this.model,
       buttonText: this.showButtonText
     });
     
     this.$el.html(rendered);
-    
-    console.log("    footer rendered")
     
     return this;
   }
