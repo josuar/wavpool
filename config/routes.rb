@@ -9,6 +9,7 @@ Wavpool::Application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resource :user, only: :show
     resource :feed, only: :show
+    resource :surf, only: :show
     
     resources :comments, only: :create
     

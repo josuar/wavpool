@@ -1,5 +1,5 @@
-WavPool.Models.Feed = Backbone.Model.extend({
-  urlRoot: "api/feed",
+WavPool.Models.Surf = Backbone.Model.extend({
+  urlRoot: "api/surf",
   
   submissions: function () {
     this._submissions = this._submissions ||
@@ -17,3 +17,5 @@ WavPool.Models.Feed = Backbone.Model.extend({
     return payload;
   }
 });
+
+WavPool.surf = new WavPool.Models.Surf();

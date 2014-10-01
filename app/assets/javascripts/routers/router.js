@@ -10,7 +10,7 @@ WavPool.Routers.Router = Backbone.Router.extend({
     "submissions/:id/edit" : "submissionEdit",
 
     "feed" : "feedShow",
-    // "surf" : "surfShow"
+    "surf" : "surfShow"
   },
   
   initialize: function (options) {
@@ -122,6 +122,12 @@ WavPool.Routers.Router = Backbone.Router.extend({
   },
   
   surfShow: function () {
+    WavPool.surf.fetch();
     
+    var view = new WavPool.Views.FeedShow({
+      model: WavPool.surf
+    });
+    
+    this.swapView(view);
   }
 });

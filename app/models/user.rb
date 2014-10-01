@@ -71,6 +71,16 @@ class User < ActiveRecord::Base
         id: self.id
       ).order(created_at: :desc)
   end
+  
+  def surf
+    Submission.
+      includes(user: :profile).
+      joins(:user).
+      where(
+        "submissions.user_id <> :id",
+        id: self.id
+      ).order(created_at: :desc)
+  end
 
   private
 
