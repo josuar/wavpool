@@ -3,16 +3,13 @@ WavPool.Views.SubmissionCoreFooter = Backbone.View.extend({
   className: 'footer',
   
   initialize: function (options) {
-    this.showButtonText = options.showButtonText || false;
+    this.showButtonText = options.showButtonText;
     this.listenTo(this.model, "change:likes", this.render);
-    
-    //this.listenTo(this.model, "sync", this.render);
   },
   
   render: function () {
     var rendered = this.template({
-      submission: this.model,
-      buttonText: this.showButtonText
+      submission: this.model
     });
     
     this.$el.html(rendered);

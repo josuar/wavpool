@@ -29,9 +29,11 @@ body {
   
   background-color: white;
   height: 100%;
-  
-  padding-left: 25px !important;
-  padding-right: 25px !important;
+}
+
+main {
+  margin-left: 25px;
+  margin-right: 25px;
 }
 
 .dropdown-form-container {
@@ -408,7 +410,7 @@ body {
 
 .submissions .progress-comment {
   font-size: 0.725em;
-  margin-left: -1px;
+  margin-left: 1px;
 }
 
 /*.submission-comment {

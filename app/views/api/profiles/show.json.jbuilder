@@ -6,7 +6,7 @@ json.(@profile, :id, :display_name, :full_name, :location,
 json.following_count @profile.user.followees.size
 json.followed_count @profile.user.followers.size
 
-unless @profile == current_user.profile
+if current_user && @profile != current_user.profile
   json.followed current_user.follows?(@profile.user)
 end
 

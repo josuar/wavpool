@@ -123,7 +123,7 @@ $.fn.audioPlayer = function () {
       if (currentComment.comment.get("track_timestamp") < audio.duration / 2) {
         $commentBubble.css("left", offset);
       } else {
-        $commentBubble.css("left", offset - $commentBubble.width() - 10);
+        $commentBubble.css("left", offset - $commentBubble.width() - 12);
         $commentBubble.css("border-radius", "0 10px")
       }
       
