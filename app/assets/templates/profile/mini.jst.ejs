@@ -1,0 +1,23 @@
+<a href="<%= profile.permalink() %>" class="pull-left">
+  <img class="display-pic" src="<%= profile.pictureUrl() %>" />
+</a>
+
+<a href="<%= profile.permalink() %>">
+  <h5 class="display-name">
+    <%= profile.escape("display_name") %>
+  </h5>
+</a>
+
+<small>
+  <span class="follower-count">
+    <span class="glyphicon glyphicon-user"></span>
+    <%= profile.escape("followed_count") %>
+  </span>
+  
+  |
+  
+  <span class="submission-count">
+    <span class="glyphicon glyphicon-upload"></span>
+    <%= profile.escape("submission_count") %>
+  </span>
+</small>

@@ -1,22 +1,19 @@
 <div class="controls pull-left">
-  <% if (submission.submitter().isCurrentUser()) { %>
-    <a class="btn btn-default btn-xs"
-      href="#/submissions/<%= submission.id %>/edit">
-      <span class="glyphicon glyphicon-pencil"></span>
-      <% if (buttonText) { %>
-        Edit
-      <% } %>
-    </a>
-  <% } %>
+  <a class="btn btn-default btn-sm like-button" href="#">
+    <span class="glyphicon glyphicon-heart"></span>
+    <% if (buttonText) { %>
+      Like
+    <% } %>
+  </a>
   
-  <a class="btn btn-default btn-xs" href="#">
+  <a class="btn btn-default btn-sm" href="#">
     <span class="glyphicon glyphicon-share"></span>
     <% if (buttonText) { %>
       Share
     <% } %>
   </a>
   
-  <a class="btn btn-default btn-xs"
+  <a class="btn btn-default btn-sm"
     href="<%= submission.submissionUrl() %>">
     <span class="glyphicon glyphicon-download"></span>
     <% if (buttonText) { %>
@@ -24,24 +21,29 @@
     <% } %>
   </a>
   
-  <a class="btn btn-default btn-xs like-button" href="#">
-    <span class="glyphicon glyphicon-heart"></span>
-    <% if (buttonText) { %>
-      Like
-    <% } %>
-  </a>
+  <% if (submission.submitter().isCurrentUser()) { %>
+    <a class="btn btn-default btn-sm context-button"
+      href="#/submissions/<%= submission.id %>/edit">
+      <span class="glyphicon glyphicon-pencil"></span>
+      <% if (buttonText) { %>
+        Edit
+      <% } %>
+    </a>
+  <% } %>
 </div>
 
 <span class="stats pull-right">
-  <span class="plays">
-    <span class="glyphicon glyphicon-play"></span>
-    0
-  </span>
+  <h4><small>
+    <span class="plays stat">
+      <span class="glyphicon glyphicon-play"></span>
+      0
+    </span>
   
-  |
-  
-  <span class="likes">
-    <span class="glyphicon glyphicon-heart"></span>
-    <%= submission.escape("likes") %>
-  </span>
+    <span class="likes stat">
+      <span class="glyphicon glyphicon-heart"></span>
+      <%= submission.escape("likes") %>
+    </span>
+  </small></h4>
 </span>
+
+<div class="clearfix"></div>

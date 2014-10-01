@@ -1,5 +1,5 @@
 WavPool.Models.Profile = Backbone.Model.extend({
-  urlRoot: '/api/profiles',
+  urlRoot: '/api/profiles/',
   
   submissions: function () {
     this._submissions = this._submissions ||
@@ -19,5 +19,13 @@ WavPool.Models.Profile = Backbone.Model.extend({
   
   isCurrentUser: function () {
     return WavPool.user && WavPool.user.profile().id === this.id;
+  },
+  
+  pictureUrl: function () {
+    return WavPool.s3Url(this.escape("picture_url"));
+  },
+  
+  permalink: function () {
+    return this.urlRoot + this.id;
   }
 });

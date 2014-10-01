@@ -20,10 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  
+  hello: "Hello world" 
   datetime:
     distance_in_words:
       about_x_hours:
         one: "1 hour"
-        other: "%{ count } hours"
+        other: "%{count} hours"

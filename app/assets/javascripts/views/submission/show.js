@@ -1,6 +1,6 @@
 WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
   template: JST['submission/show'],
-  className: 'submission',
+  className: 'submission-full',
   
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
@@ -28,6 +28,11 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
     this.addSubview(
       ".cover-art-container",
       new WavPool.Views.SubmissionCoverArt({ model: this.model })
+    );
+    
+    this.addSubview(
+      ".mini-profile-container",
+      new WavPool.Views.ProfileMini({ model: this.model.submitter() })
     );
   }
 });

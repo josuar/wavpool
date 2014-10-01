@@ -11,7 +11,14 @@ if signed_in?
 end
 
 # Profile
-json.submitter submission.submitter, :id, :display_name, :picture_url
+json.submitter do
+  json.id submission.submitter.id
+  json.display_name submission.submitter.display_name
+  json.picture_url submission.submitter.picture_url
+  
+  json.followed_count submission.submitter.user.followers.size
+  json.submission_count submission.submitter.user.submissions.size
+end
 
 # Comments
 json.comments submission.comments do |comment|
