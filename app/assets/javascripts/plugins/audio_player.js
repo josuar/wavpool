@@ -270,8 +270,8 @@ $.fn.audioPlayer = function () {
     analyzing = true;
     
     var gradient = canvasContext.createLinearGradient(0, 0, 0, canvasHeight);
-    gradient.addColorStop(1,    'hsl(200, 65%, 85%)');
-    gradient.addColorStop(0.75, 'hsl(200, 70%, 80%)');
+    gradient.addColorStop(1,    'hsl(200, 65%, 93%)');
+    gradient.addColorStop(0.75, 'hsl(200, 70%, 85%)');
     gradient.addColorStop(0.25, 'hsl(200, 75%, 75%)');
     gradient.addColorStop(0,    'hsl(200, 80%, 65%)');
     
@@ -280,23 +280,23 @@ $.fn.audioPlayer = function () {
     function _renderAnalyzer() {
       animator = window.requestAnimationFrame(_renderAnalyzer);
       
-      analyzer.getByteFrequencyData(buffer); 
-      //analyzer.getByteTimeDomainData(buffer);
+      analyzer.getByteFrequencyData(buffer);
+      // analyzer.getByteTimeDomainData(buffer);
     
       canvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
       canvasContext.fillStyle = gradient;
-      
+
       for(var x = 0; x < canvasWidth; ++x) {
         var i = Math.floor(x * (bufferLength / canvasWidth));
         var height = (buffer[i] * .0035) * canvasHeight;
-        
+
         canvasContext.fillRect(x, canvasHeight, 1, -height);
       }
       
       // canvasContext.lineWidth = 4;
-    //   canvasContext.strokeStyle = "#428dc9";
-    //   canvasContext.beginPath();
-
+      // canvasContext.strokeStyle = gradient;
+      // canvasContext.beginPath();
+      //
       // var sliceWidth = canvasWidth * 1.0 / bufferLength;
       // var x = 0;
       //
@@ -315,8 +315,6 @@ $.fn.audioPlayer = function () {
       //
       // canvasContext.lineTo(canvasWidth, canvasHeight / 2);
       // canvasContext.stroke();
-      
-      
     };
   };
 

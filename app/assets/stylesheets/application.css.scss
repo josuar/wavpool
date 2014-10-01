@@ -29,11 +29,15 @@ body {
   
   background-color: white;
   height: 100%;
+  
+  overflow-y: scroll;
 }
 
 main {
   margin-left: 25px;
   margin-right: 25px;
+  
+  height: 100%;
 }
 
 .dropdown-form-container {
@@ -42,8 +46,8 @@ main {
 }
 
 .navbar {
-  padding-left: 80px !important;
-  padding-right: 80px !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
 }
 
 .display-pic {
@@ -198,30 +202,17 @@ main {
   height: 200px;
 }
 
-
-
-
-
-.submissions .media {
-  margin-bottom: 25px;
-}
-
-.submissions {
-  /*overflow-y: scroll;
-  height: 100%;*/
-}
-
 .liked {
   color: white;
 }
 
-/*.alerts {
+.alerts {
   position: absolute;
   top: 55px;
   right: -15px;
   z-index: 2;
   width: 400px;
-}*/
+}
 
 .track-progress {
   margin-bottom: 7px;
@@ -331,7 +322,7 @@ main {
 .navbar {
     background: linear-gradient(to bottom, hsl(0, 0%, 10%), hsl(0, 0%, 20%), hsl(0, 0%, 10%));
     
-    text-shadow: 1px 1px 5px hsl(0, 0%, 5%);
+//    text-shadow: 1px 1px 5px hsl(0, 0%, 5%);
 }
 
 .navbar-inverse .navbar-nav > li > a:active {
@@ -339,7 +330,7 @@ main {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: hsl(0, 0%, 60%);
+  color: hsl(0, 0%, 85%);
 }
 
 .navbar-header {
@@ -387,6 +378,11 @@ main {
   transition: none;
 }
 
+.comment-picture {
+  width: 50px;
+  height: 50px;
+}
+
 .progress-comment {
   position: absolute;
   bottom: 7px;
@@ -412,10 +408,6 @@ main {
   font-size: 0.725em;
   margin-left: 1px;
 }
-
-/*.submission-comment {
-  max-width: 500px;
-}*/
 
 .submission-comment .form-group {
   margin-bottom: 5px;

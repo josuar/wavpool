@@ -31,6 +31,11 @@ WavPool.Views.SubmissionShow = Backbone.CompositeView.extend({
     );
     
     this.addSubview(
+      ".comments-container",
+      new WavPool.Views.Comments({ model: this.model })
+    );
+    
+    this.addSubview(
       ".mini-profile-container",
       new WavPool.Views.ProfileMini({ model: this.model.submitter() })
     );

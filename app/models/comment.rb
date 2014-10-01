@@ -9,7 +9,6 @@
 #  content         :text             not null
 #  created_at      :datetime
 #  updated_at      :datetime
-#  track_position  :integer          default(0)
 #
 
 class Comment < ActiveRecord::Base

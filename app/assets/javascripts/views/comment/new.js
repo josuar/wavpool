@@ -30,6 +30,9 @@ WavPool.Views.CommentNew = Backbone.View.extend({
         
         this.$('input').val('');
         
+        comment._profile = WavPool.user.profile();
+        comment.trigger("sync");
+        
         if (this.success) {
           this.success(comment);
         }

@@ -1,0 +1,11 @@
+<div class="media">
+  <a class="pull-left" href="<%= comment.profile().showLink() %>">
+    <img class="media-object comment-picture" src="<%= comment.profile().pictureUrl() %>">
+  </a>
+  <div class="media-body">
+    <h5 class="media-heading"><%= comment.profile().escape("display_name") %> <small>at <%= comment.readableTimestamp() %></small></h5>
+    <%= comment.escape("content") %>
+  </div>
+</div>
+
+<hr>

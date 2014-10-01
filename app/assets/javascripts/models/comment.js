@@ -15,5 +15,24 @@ WavPool.Models.Comment = Backbone.Model.extend({
     }
     
     return payload;
+  },
+  
+  readableTimestamp: function () {
+    var time = this.get("track_timestamp");
+    
+    var minutes = Math.floor(time / 60);
+    var seconds = time - minutes * 60;
+    
+    return pad(minutes, 2) + ":" + pad(seconds, 2);
+    
+    function pad(number, width) {
+      number = number + '';
+      
+      if (number.length >= width) {
+        return number;
+      } else {
+        return new Array(width - number.length + 1).join('0') + number;
+      }
+    }
   }
 });
