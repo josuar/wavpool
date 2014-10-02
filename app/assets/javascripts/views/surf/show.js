@@ -1,7 +1,7 @@
-WavPool.Views.FeedShow = Backbone.CompositeView.extend({
-	template: JST["feed/show"],
+WavPool.Views.SurfShow = Backbone.CompositeView.extend({
+	template: JST["surf/show"],
   
-  className: "feed",
+  className: "surf",
 
 	initialize: function () {    
     this.listenTo(this.model, "sync", this.render);
@@ -9,24 +9,7 @@ WavPool.Views.FeedShow = Backbone.CompositeView.extend({
     this.listenTo(this.model.submissions(), "add", this.addSubmission);
     this.listenTo(this.model.submissions(), "remove", this.removeSubmission);
     
-    this.listenTo(this.model.recentLikes(), "add", this.addLike);
-    this.listenTo(
-      this.model.recommendedUsers(),
-      "add",
-      this.addRecommendedUser
-    );
-    
     this.model.submissions().each(this.addSubmission.bind(this));    
-    this.model.recentLikes().each(this.addLike.bind(this));
-    this.model.recommendedUsers().each(this.addRecommendedUser.bind(this));
-  },
-  
-  addRecommendedUser: function (user) {
-    var subview = new WavPool.Views.ProfileMini({
-      model: user
-    });
-    
-    this.addSubview(".recommended-users", subview);
   },
   
   addSubmission: function (submission) {
@@ -45,14 +28,6 @@ WavPool.Views.FeedShow = Backbone.CompositeView.extend({
     });
     
     this.removeSubview(".submissions", subview)
-  },
-  
-  addLike: function (submission) {
-    var view = new WavPool.Views.SubmissionMini({
-      model: submission
-    });
-
-    this.addSubview(".recent-likes", view);
   },
 
   render: function () {    

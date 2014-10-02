@@ -24,13 +24,32 @@ body {
   padding: 50px 25px 0px 25px;
 }
 
+.profile-full,
+.submission-full {
+  height: 100%;
+}
+
+.profile-full .stats {
+  overflow: auto;
+}
+
+.comments-container {
+  height: 100%;
+  overflow: auto;
+}
+
+.submissions {
+  height: 100%;
+  overflow: auto;
+}
+
 .all-content {
   padding-top: 25px;
   
   background-color: white;
   height: 100%;
   
-  overflow-y: scroll;
+  overflow: auto;
 }
 
 main {
@@ -208,8 +227,8 @@ main {
 
 .alerts {
   position: absolute;
-  top: 55px;
-  right: -15px;
+  top: 75px;
+  right: 35px;
   z-index: 2;
   width: 400px;
 }

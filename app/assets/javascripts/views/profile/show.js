@@ -80,6 +80,14 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
         // followers.text(parseInt(followers.text(), 10) - 1);
       }.bind(this)
     });
+    
+    this.$('.submissions').infiniteLoader(
+      this.model.apiUrl(), 
+      "submissions",
+      function (data) {
+        this.model.submissions().add(data.submissions);
+      }.bind(this)
+    );
   },
   
   render: function () {

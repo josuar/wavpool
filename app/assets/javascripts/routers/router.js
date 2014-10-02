@@ -122,7 +122,7 @@ WavPool.Routers.Router = Backbone.Router.extend({
   surfShow: function () {
     WavPool.surf.fetch();
     
-    var view = new WavPool.Views.FeedShow({
+    var view = new WavPool.Views.SurfShow({
       model: WavPool.surf
     });
     

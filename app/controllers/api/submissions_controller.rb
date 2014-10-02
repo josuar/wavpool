@@ -11,7 +11,7 @@ class Api::SubmissionsController < ApplicationController
   end
   
   def show
-    @submission = Submission.includes(user: :profile).find(params[:id])
+    @submission = Submission.find(params[:id])
     
     render :show
   end

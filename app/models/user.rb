@@ -65,7 +65,6 @@ class User < ActiveRecord::Base
   
   def feed
     Submission.
-      includes(user: :profile).
       joins(:user).
       joins("LEFT OUTER JOIN follows ON users.id = follows.followee_id").
       where(
@@ -76,7 +75,6 @@ class User < ActiveRecord::Base
   
   def surf
     Submission.
-      includes(user: :profile).
       joins(:user).
       where(
         "submissions.user_id <> :id",
@@ -84,10 +82,21 @@ class User < ActiveRecord::Base
       ).order(created_at: :desc)
   end
   
+  def recommended_users
+    Profile.
+      select("profiles.*, COUNT(submissions.id) AS submission_count").
+      joins(:submissions).
+      joins(user: :in_follows).
+      where("users.id <> :id AND follows.follower_id <> :id", id: self.id).
+      group("profiles.id").
+      order("submission_count DESC").
+      limit(3)
+  end
+  
   def recent_likes
     Submission.   
-      joins("LEFT JOIN likes ON submissions.id = likes.likee_id").
-      joins("LEFT JOIN users ON users.id = likes.liker_id").
+      joins("INNER JOIN likes ON submissions.id = likes.likee_id").
+      joins("INNER JOIN users ON users.id = likes.liker_id").
       where(
         "submissions.user_id <> :id AND likes.liker_id = :id",
         id: self.id
@@ -97,7 +106,7 @@ class User < ActiveRecord::Base
   end
   
   def recent_comments
-    comments.order(created_at: :desc).limit(3)
+    comments.includes(:user).includes(:submission).order(created_at: :desc).limit(3)
   end
 
   private

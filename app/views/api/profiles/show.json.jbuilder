@@ -13,7 +13,7 @@ end
 # Submissions
 json.submission_count @profile.user.submissions.size
 
-json.submissions @profile.user.submissions do |submission|
+json.submissions @profile.user.submissions.limit(10) do |submission|
   json.partial! 'api/submissions/submission', submission: submission
 end
 

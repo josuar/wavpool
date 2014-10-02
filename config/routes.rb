@@ -14,6 +14,7 @@ Wavpool::Application.routes.draw do
     resources :comments, only: :create
     
     resources :profiles, only: [:show, :update] do
+      resources :submissions, only: :index
       resource :follow, only: [:create, :destroy]
     end
     

@@ -43,8 +43,11 @@ gem 'figaro'
 
 gem 'aws-sdk'
 
+gem 'kaminari'
+
 group :development do
   gem 'better_errors', '~> 1.1'
   gem 'binding_of_caller'
   gem 'pry-rails'
+  gem 'bullet'
 end

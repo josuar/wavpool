@@ -55,5 +55,9 @@ WavPool.Models.Profile = Backbone.Model.extend({
   
   editLink: function () {
     return "#/profile/edit";
+  },
+  
+  apiUrl: function () {
+    return this.urlRoot + this.id;
   }
 });

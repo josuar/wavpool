@@ -3,6 +3,13 @@ class Api::ProfilesController < ApplicationController
   
   def show
     @profile = current_profile
+    
+    if params[:page]
+      @submissions = @profile.user.submissions.page(params[:page]).per(10)
+      render :page
+    else
+      render :show
+    end   
   end
   
   def update
@@ -25,7 +32,8 @@ class Api::ProfilesController < ApplicationController
   end
   
   def current_profile
-    @current_profile ||= Profile.find(params[:id])
+    @current_profile ||=
+      Profile.includes(user: {submissions: [:submitter, { comments: :user } ]}).find(params[:id])
   end
   
   def require_ownership!
