@@ -7,8 +7,15 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
 
     this.listenTo(this.model.submissions(), "add", this.addSubmission);
     this.listenTo(this.model.submissions(), "remove", this.removeSubmission);
+    
+    this.listenTo(this.model.recentLikes(), "add", this.addLike);
+    
+    this.listenTo(this.model.recentComments(), "add", this.addComment);
+    this.listenTo(this.model.recentComments(), "remove", this.removeComment);
 
     this.model.submissions().each(this.addSubmission.bind(this));
+    this.model.recentLikes().each(this.addLike.bind(this));
+    this.model.recentComments().each(this.addComment.bind(this));
   },
 
   addSubmission: function (submission) {
@@ -21,10 +28,34 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
 
   removeSubmission: function (submission) {
     var subview = _.find(this.subviews(".submissions"), function (subview) {
-      return subview.model === list;
+      return subview.model === submission;
     });
     
     this.removeSubview(".submissions", subview);
+  },
+  
+  addLike: function (submission) {
+    var view = new WavPool.Views.SubmissionMini({
+      model: submission
+    });
+
+    this.addSubview(".recent-likes", view);
+  },
+  
+  addComment: function (comment) {
+    var view = new WavPool.Views.CommentMini({
+      model: comment
+    });
+
+    this.addSubview(".recent-comments", view);
+  },
+  
+  removeComment: function (comment) {
+    var subview = _.find(this.subviews(".recent-comments"), function (subview) {
+      return subview.model === comment;
+    });
+    
+    this.removeSubview(".recent-comments", subview);
   },
   
   onAfterRender: function () {
@@ -40,13 +71,13 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
       actionUrl: "api/profiles/" + this.model.id + "/follow",
 
       onOn: function () {
-        followers = this.$(".followed-count");
-        followers.text(parseInt(followers.text(), 10) + 1);
+        // followers = this.$(".followed-count");
+        // followers.text(parseInt(followers.text(), 10) + 1);
       }.bind(this),
 
       onOff: function () {
-        followers = this.$(".followed-count");
-        followers.text(parseInt(followers.text(), 10) - 1);
+        // followers = this.$(".followed-count");
+        // followers.text(parseInt(followers.text(), 10) - 1);
       }.bind(this)
     });
   },

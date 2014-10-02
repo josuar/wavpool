@@ -1,0 +1,10 @@
+on
+<a href="<%= comment.submission().showLink() %>">
+  <%= comment.submission().escape("title") %>
+</a>
+
+<br>
+
+<span class="comment-content">" <%= comment.escape("content") %> "</span>
+
+<hr>

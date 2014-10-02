@@ -3,7 +3,7 @@ WavPool.Collections.Comments = Backbone.Collection.extend({
   model: WavPool.Models.Comment,
   
   initialize: function (models, options) {
-    this.submission = options.submission;
+    this.submission = options.submission || null;
   },
   
   comparator: function (comment) {

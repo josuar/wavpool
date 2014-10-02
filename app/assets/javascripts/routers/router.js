@@ -18,11 +18,9 @@ WavPool.Routers.Router = Backbone.Router.extend({
   },
   
   root: function () {
-    if (WavPool.user) {
-      this.feedShow();
-    } else {
-      this.surfShow();
-    }
+   if (WavPool.user) {
+     this.feedShow();
+   }
   },
   
   profileShow: function (id) {

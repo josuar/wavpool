@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
 
   has_many :out_likes, class_name: "Like", foreign_key: :liker_id
   has_many :likes, through: :out_likes, source: :likee
+  
+  has_many :comments
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64(32)
@@ -80,6 +82,22 @@ class User < ActiveRecord::Base
         "submissions.user_id <> :id",
         id: self.id
       ).order(created_at: :desc)
+  end
+  
+  def recent_likes
+    Submission.   
+      joins("LEFT JOIN likes ON submissions.id = likes.likee_id").
+      joins("LEFT JOIN users ON users.id = likes.liker_id").
+      where(
+        "submissions.user_id <> :id AND likes.liker_id = :id",
+        id: self.id
+      ).
+      order(created_at: :desc).
+      limit(3)
+  end
+  
+  def recent_comments
+    comments.order(created_at: :desc).limit(3)
   end
 
   private

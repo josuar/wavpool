@@ -1,0 +1,33 @@
+<a href="<%= submission.showLink() %>" class="pull-left">
+  <img class="display-pic" src="<%= submission.imageUrl() %>" />
+</a>
+
+  <h5 class="display-name">
+    <a href="<%= submission.submitter().showLink() %>">
+      <small>
+        <%= submission.submitter().escape("display_name") %>
+      </small>
+    </a>
+    
+    <br>
+    
+    <a href="<%= submission.showLink() %>">
+      <%= submission.escape("title") %>
+    </a>
+  </h5>
+
+<small class="stats">
+  <span class="follower-count">
+    <span class="glyphicon glyphicon-play"></span>
+    0
+  </span>
+  
+  |
+  
+  <span class="submission-count">
+    <span class="glyphicon glyphicon-upload"></span>
+    <%= submission.escape("likes") %>
+  </span>
+</small>
+
+<hr>

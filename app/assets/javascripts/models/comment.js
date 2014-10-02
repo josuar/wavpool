@@ -8,10 +8,22 @@ WavPool.Models.Comment = Backbone.Model.extend({
     return this._profile;
   },
   
+  submission: function () {
+    this._submission = this._submission ||
+      new WavPool.Models.Submission();
+      
+    return this._submission;
+  },
+  
   parse: function (payload) {
     if (payload.profile) {
       this.profile().set(payload.profile, { parse: true } );
       delete payload.profile;
+    }
+    
+    if (payload.submission) {
+      this.submission().set(payload.submission, { parse: true } );
+      delete payload.submission;
     }
     
     return payload;
