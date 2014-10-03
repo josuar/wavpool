@@ -4,9 +4,9 @@ class Api::SurfsController < ApplicationController
       current_user.surf : Submission.all.order(created_at: :desc)
       
     if params[:page]
-      @surf = @surf.page(params[:page]).per(10)
+      @surf = @surf.page(params[:page]).per(5)
     else
-      @surf = @surf.page(1).per(10)
+      @surf = @surf.page(1).per(5)
     end
   end
 end
