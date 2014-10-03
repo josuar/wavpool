@@ -5,6 +5,7 @@ $.InfiniteLoader = function (el, url, dataName, callback) {
   this.callback = callback;
   this.dataName = dataName;
   this.finished = false;
+  this.working = false;
   
   this.nextPage = 2;
   
@@ -12,16 +13,19 @@ $.InfiniteLoader = function (el, url, dataName, callback) {
 };
 
 $.InfiniteLoader.prototype.fetch = function (event) {  
-  if (this.finished) {
+  if (this.finished || this.working) {
     return;
   }
+  
+  this.working = true;
   
   $.ajax({
     url: this._buildUrl(),
     type: "GET",
     dataType: "JSON",  
     success: function (data) {
-      this.callback(data);
+      this.callback(data);  
+      this.working = false;
       
       if (data[this.dataName].length > 0) {
         this.nextPage++;

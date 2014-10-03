@@ -31,7 +31,7 @@ WavPool.Views.SurfShow = Backbone.CompositeView.extend({
   },
   
   onAfterRender: function () {
-    this.$('.submissions').infiniteLoader(
+    $('.all-content').infiniteLoader(
       this.model.urlRoot, 
       "submissions",
       function (data) {
