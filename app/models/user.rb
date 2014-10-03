@@ -85,12 +85,15 @@ class User < ActiveRecord::Base
   
   def recommended_users
     Profile.
-      select("profiles.*, COUNT(submissions.id) AS submission_count").
-      joins(:submissions).
-      joins(user: :in_follows).
-      where("users.id <> :id AND follows.follower_id <> :id", id: self.id).
-      group("profiles.id").
-      order("submission_count DESC").
+      select("profiles.*,
+      COUNT(DISTINCT submissions.id) AS submissions_count,
+      COUNT(DISTINCT follows.id) AS followers_count,
+      CAST(COUNT(DISTINCT follows.id) AS float) / COUNT(DISTINCT submissions.id) AS ratio").
+      joins(user: :submissions).
+      joins("LEFT OUTER JOIN follows ON users.id = follows.followee_id").
+      where('users.id <> :id', id: self.id).
+      group('profiles.id').
+      order('ratio DESC').
       limit(3)
   end
   
