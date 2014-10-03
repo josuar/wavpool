@@ -29,6 +29,16 @@ WavPool.Views.SurfShow = Backbone.CompositeView.extend({
     
     this.removeSubview(".submissions", subview)
   },
+  
+  onAfterRender: function () {
+    this.$('.submissions').infiniteLoader(
+      this.model.urlRoot, 
+      "submissions",
+      function (data) {
+        this.model.submissions().add(data.submissions);
+      }.bind(this)
+    );
+  },
 
   render: function () {    
     var renderedContent = this.template({

@@ -1,9 +1,12 @@
 class Api::SurfsController < ApplicationController
   def show
-    if signed_in?
-      @surf = current_user.surf
+    @surf = signed_in? ?
+      current_user.surf : Submission.all.order(created_at: :desc)
+      
+    if params[:page]
+      @surf = @surf.page(params[:page]).per(10)
     else
-      @surf = Submission.all.order(created_at: :desc)
+      @surf = @surf.page(1).per(10)
     end
   end
 end

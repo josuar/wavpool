@@ -4,6 +4,7 @@ $.InfiniteLoader = function (el, url, dataName, callback) {
   this.url = url;
   this.callback = callback;
   this.dataName = dataName;
+  this.finished = false;
   
   this.nextPage = 2;
   
@@ -11,6 +12,10 @@ $.InfiniteLoader = function (el, url, dataName, callback) {
 };
 
 $.InfiniteLoader.prototype.fetch = function (event) {  
+  if (this.finished) {
+    return;
+  }
+  
   $.ajax({
     url: this._buildUrl(),
     type: "GET",
@@ -20,6 +25,8 @@ $.InfiniteLoader.prototype.fetch = function (event) {
       
       if (data[this.dataName].length > 0) {
         this.nextPage++;
+      } else {
+        this.finished = true;
       }
     }.bind(this)
   });
@@ -33,7 +40,7 @@ $.InfiniteLoader.prototype._bindScroll = function (event) {
   this.$el.bind('scroll', function () {
     var $el = this.$el;
   
-    if($el.scrollTop() + $el.innerHeight() >= $el.get(0).scrollHeight) {
+    if($el.scrollTop() + ($el.innerHeight() * 2) >= $el.get(0).scrollHeight) {
       this.fetch();
     }
   }.bind(this));
