@@ -21,6 +21,6 @@ json.submitter do
 end
 
 # Comments
-json.comments submission.comments.includes(:user) do |comment|
+json.comments submission.comments.includes(user: :profile) do |comment|
   json.partial! 'api/comments/comment', comment: comment
 end

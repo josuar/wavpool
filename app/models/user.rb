@@ -65,6 +65,7 @@ class User < ActiveRecord::Base
   
   def feed
     Submission.
+      includes(submitter: :user).
       joins(:user).
       joins("LEFT OUTER JOIN follows ON users.id = follows.followee_id").
       where(
@@ -75,7 +76,7 @@ class User < ActiveRecord::Base
   
   def surf
     Submission.
-      joins(:user).
+      includes(submitter: :user).
       where(
         "submissions.user_id <> :id",
         id: self.id
@@ -106,7 +107,7 @@ class User < ActiveRecord::Base
   end
   
   def recent_comments
-    comments.includes(:user).includes(:submission).order(created_at: :desc).limit(3)
+    comments.includes(:submission).order(created_at: :desc).limit(3)
   end
 
   private

@@ -33,7 +33,7 @@ class Api::ProfilesController < ApplicationController
   
   def current_profile
     @current_profile ||=
-      Profile.includes(user: {submissions: [:submitter, { comments: :user } ]}).find(params[:id])
+      Profile.includes(user: { submissions: :submitter }).find(params[:id])
   end
   
   def require_ownership!
