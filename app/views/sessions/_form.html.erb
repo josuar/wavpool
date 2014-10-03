@@ -1,12 +1,12 @@
 <%= form_tag session_path do %>
   <% fields_for :session do |s| %>
     <div class="form-group">
-        <%= s.text_field :email_address, class: 'form-control', placeholder: 'Email address' %>
+        <%= s.text_field :email_address, class: 'form-control', placeholder: 'Email address', value: 'guest@mail.com' %>
     </div>
   
     <div class="form-group">
       <div class="input-group">
-        <%= s.password_field :password, class: 'form-control', placeholder: 'Password' %>
+        <%= s.password_field :password, class: 'form-control', placeholder: 'Password', value: 'password' %>
 
         <span class="input-group-btn">
           <button class="btn btn-default">
