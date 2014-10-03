@@ -3,7 +3,7 @@
     <img class="media-object comment-picture" src="<%= comment.profile().pictureUrl() %>">
   </a>
   <div class="media-body">
-    <h5 class="media-heading"><%= comment.profile().escape("display_name") %> <small>at <%= comment.readableTimestamp() %></small></h5>
+    <h5 class="media-heading"><a href="<%= comment.profile().showLink()%>"><%= comment.profile().escape("display_name") %></a> <small>at <%= comment.readableTimestamp() %></small></h5>
     <%= comment.escape("content") %>
   </div>
 </div>
