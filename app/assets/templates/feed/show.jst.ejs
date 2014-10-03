@@ -1,4 +1,15 @@
-<div class="col-xs-9 submissions"></div>
+<div class="col-xs-9">
+  <% if (WavPool.user) { %>
+  <h4><%= WavPool.user.profile().escape("display_name") %>'s feed<br><small>Keep track of submissions from everyone you follow.</small></h4>
+  <% } else { %>
+  <% } %>
+  
+  <hr>
+  
+  <div class="submissions">
+    <h4>Nothing to see here! Follow some users to start building your feed.</h4>
+  </div> 
+</div>
 <div class="col-xs-3 sidebar">
   <div class="text-muted">
     <h5>Recent likes</h5>

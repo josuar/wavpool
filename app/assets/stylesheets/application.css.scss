@@ -231,7 +231,14 @@ main {
   right: 35px;
   z-index: 2;
   width: 400px;
+  opacity: 0.75;
+  transition: opacity 0.2s;
 }
+
+.alerts:hover {
+  opacity: 1.0;
+  transition: opacity 0.2s;
+};
 
 .track-progress {
   margin-bottom: 7px;
