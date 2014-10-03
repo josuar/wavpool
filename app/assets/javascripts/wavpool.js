@@ -22,6 +22,10 @@ window.WavPool = {
     
     if (!this.user) {
       this._start();
+      
+      if (window.location.pathname === '/') {
+        Backbone.history.navigate("#surf", { trigger: true });
+      }
     } 
   },
   
