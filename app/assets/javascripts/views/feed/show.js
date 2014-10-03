@@ -54,6 +54,16 @@ WavPool.Views.FeedShow = Backbone.CompositeView.extend({
 
     this.addSubview(".recent-likes", view);
   },
+  
+  onAfterRender: function () {
+    $('.all-content').infiniteLoader(
+      this.model.urlRoot, 
+      "submissions",
+      function (data) {
+        this.model.submissions().add(data.submissions);
+      }.bind(this)
+    );
+  },
 
   render: function () {    
     var renderedContent = this.template({
