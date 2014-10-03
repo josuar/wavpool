@@ -44,7 +44,8 @@ WavPool.Views.SubmissionCore = Backbone.CompositeView.extend({
       WavPool.player.playTrack({
         url: this.model.submissionUrl(),
         title: this.model.escape("title"),
-        id: this.model.id
+        id: this.model.id,
+        link: this.model.showLink()
       });
       
       this._bindRemote();

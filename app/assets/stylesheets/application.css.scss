@@ -298,6 +298,8 @@ main {
 }
 
 .track-info {
+  position: relative;
+  top: 3px;
   width: 210px;
   height: 105%;
   white-space: nowrap;

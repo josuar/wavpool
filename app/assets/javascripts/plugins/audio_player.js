@@ -13,7 +13,7 @@ $.fn.audioPlayer = function () {
 
   var $prevTrack = this.find('.prev-track');
   var $nextTrack = this.find('.next-track');
-  var $trackTitle = this.find('.track-title');
+  var $trackLink = this.find('.track-link');
   
   var $progressBar = this.find('.progress');
 
@@ -153,7 +153,8 @@ $.fn.audioPlayer = function () {
   };
 
   var render = function () {
-    $trackTitle.text(currentTrack.title);
+    $trackLink.text(currentTrack.title);
+    $trackLink.attr("href", currentTrack.link);
   };
 
   var processQueue = function () {
