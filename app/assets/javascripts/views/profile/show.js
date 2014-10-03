@@ -59,6 +59,8 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
   },
   
   onAfterRender: function () {
+    var $followedCount = this.$('.followed-count');
+
     this.$('.follow-button').toggleButton({      
       onAction: "Follow",
       offAction: "Unfollow",
@@ -71,13 +73,11 @@ WavPool.Views.ProfileShow = Backbone.CompositeView.extend({
       actionUrl: "api/profiles/" + this.model.id + "/follow",
 
       onOn: function () {
-        // followers = this.$(".followed-count");
-        // followers.text(parseInt(followers.text(), 10) + 1);
+        $followedCount.text(parseInt($followedCount.text(), 10) + 1);
       }.bind(this),
 
       onOff: function () {
-        // followers = this.$(".followed-count");
-        // followers.text(parseInt(followers.text(), 10) - 1);
+        $followedCount.text(parseInt($followedCount.text(), 10) - 1);
       }.bind(this)
     });
     

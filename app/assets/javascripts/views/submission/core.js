@@ -53,6 +53,8 @@ WavPool.Views.SubmissionCore = Backbone.CompositeView.extend({
   },
   
   onAfterRender: function () {
+    var $likesCount = this.$('.likes-count');
+
     this.$('.like-button').toggleButton({      
       onAction: "Like",
       offAction: "Unlike",
@@ -69,11 +71,11 @@ WavPool.Views.SubmissionCore = Backbone.CompositeView.extend({
       actionUrl: "api/submissions/" + this.model.id + "/like",
       
       onOn: function () {
-        // this.model.set("likes", this.model.get("likes") + 1);
+        $likesCount.text(parseInt($likesCount.text(), 10) + 1);
       }.bind(this),
 
       onOff: function () {
-        // this.model.set("likes", this.model.get("likes") - 1);
+        $likesCount.text(parseInt($likesCount.text(), 10) - 1);
       }.bind(this)
     });
 

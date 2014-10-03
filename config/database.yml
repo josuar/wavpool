@@ -19,5 +19,5 @@ development:
   encoding: unicode
   database: wavpool_development
   pool: 5
-  username: appacademy
+  username: taylor
   password:
