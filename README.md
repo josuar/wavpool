@@ -4,6 +4,7 @@
 
 WavPool is a music-sharing service where users can contribute to a boundless pool of tracks, snippets, remixes, DJ sets, and everything in between. Visitors surfing the pool can use search queries, tags, and simple browsing to discover new aural treats, and can follow their favorite users to stay up-to-date on every submission.
 
+[Try WavPool live.](http://wavpool.haitei.com) WavPool is best supported in Google Chrome and other Webkit-based browsers.
 
 ## Features
 ### User registration
